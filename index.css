@@ -25,13 +25,11 @@ section {
   min-height: 100vh;
 }
 
-section .circle-text {
-  position: absolute;
+.circle-text {
+  position: relative;
+  margin: 0 auto;
   color: #eeeeee;
-  font-size: 1.5em;
-  user-select: none;
-  pointer-events: none;
-  animation: animate 7.5s linear infinite;
+  animation: animate 20s linear infinite;
 }
 
 @keyframes animate {
@@ -44,9 +42,8 @@ section .circle-text {
 }
 
 .circle-text span {
-  top: -100px;
+  top: -300px;
   position: absolute;
-  display: inline-block;
   text-transform: uppercase;
-  transform-origin: 0 100px;
+  transform-origin: 0 300px;
 }

@@ -9,15 +9,27 @@
   </head>
   <body>
     <section>
-      <h2 class="circle-text">Jyun Play Game Visit</h2>
+      <div class="circle-text">
+        Jyun Play Game Visit Exhibition Jyun Play Game Visit Exhibition Jyun
+        Play Game Visit Exhibition
+      </div>
     </section>
     <script>
-      const text = document.querySelector(".circle-text");
-      text.innerHTML = text.textContent.replace(/\S/g, "<span>$&</span>");
+      const circleText = document.querySelector(".circle-text");
+      const stripText = circleText.innerHTML.trim();
+      console.log(stripText);
+
+      let text = "";
+      for (let i = 0; i < stripText.length; i++) {
+        console.log(stripText.charAt(i));
+        text += `<span>${stripText.charAt(i)}</span>`;
+      }
+
+      circleText.innerHTML = text;
 
       const element = document.querySelectorAll("span");
       for (let i = 0; i < element.length; i++) {
-        element[i].style.transform = "rotate(" + i * 20 + "deg)";
+        element[i].style.transform = "rotate(" + i * 4 + "deg)";
       }
     </script>
   </body>
