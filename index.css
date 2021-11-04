@@ -1,0 +1,52 @@
+@font-face {
+  font-family: MuseoSans;
+  src: url(assets/museo_sans_ssv/Museo\ Sans\ 100/MuseoSans-100.otf);
+}
+
+@font-face {
+  font-family: MuseoSans;
+  src: url(assets/museo_sans_ssv/Museo\ Sans\ 700/MuseoSans_700.otf);
+  font-weight: bold;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #121212;
+  font-family: MuseoSans;
+}
+
+section {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+section .circle-text {
+  position: absolute;
+  color: #eeeeee;
+  font-size: 1.5em;
+  user-select: none;
+  pointer-events: none;
+  animation: animate 7.5s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.circle-text span {
+  top: -100px;
+  position: absolute;
+  display: inline-block;
+  text-transform: uppercase;
+  transform-origin: 0 100px;
+}
