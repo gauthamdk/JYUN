@@ -29,7 +29,16 @@ section {
   position: relative;
   margin: 0 auto;
   color: #eeeeee;
+  font-size: 25px;
   animation: animate 20s linear infinite;
+}
+
+.options {
+  color: #eeeeee;
+}
+
+.jyun-bold {
+  font-weight: bold;
 }
 
 @keyframes animate {

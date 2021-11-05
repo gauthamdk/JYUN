@@ -9,20 +9,30 @@
   </head>
   <body>
     <section>
-      <div class="circle-text">
-        Jyun Play Game Visit Exhibition Jyun Play Game Visit Exhibition Jyun
-        Play Game Visit Exhibition
-      </div>
+      <p class="circle-text">JYUN PlayGame VisitExhibition</p>
+      <p class="options">JYUN PLAY GAME VISIT EXHIBITION</p>
     </section>
+
     <script>
       const circleText = document.querySelector(".circle-text");
       const stripText = circleText.innerHTML.trim();
       console.log(stripText);
 
       let text = "";
-      for (let i = 0; i < stripText.length; i++) {
-        console.log(stripText.charAt(i));
-        text += `<span>${stripText.charAt(i)}</span>`;
+      for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < stripText.length; j++) {
+          if (
+            stripText.charAt(j) == "J" ||
+            stripText.charAt(j) == "Y" ||
+            stripText.charAt(j) == "U" ||
+            stripText.charAt(j) == "N"
+          ) {
+            text += `<span class="jyun-bold">${stripText.charAt(j)}</span>`;
+          } else {
+            text += `<span>${stripText.charAt(j)}</span>`;
+          }
+        }
+        text += `<span> </span>`;
       }
 
       circleText.innerHTML = text;
