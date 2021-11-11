@@ -12,6 +12,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" type="text/css" href="game.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </head>
   <body>
     <div class="container-fliud d-flex vh-100 px-3 py-3">
@@ -24,13 +25,19 @@
           <div class="row h-75 d-flex align-items-end">
             <div class="col">
               <img
+                id="p_default_03"
                 class="img-fluid w-50"
                 src="assets/player/Character_PDefault03.png"
               />
             </div>
-            <div class="col">Dialogue goes here</div>
+            <div id="gameplay_text" class="col gamplay_text pb-5 d-none">
+              Dialogue goes here
+            </div>
+            <div id="username" class="col gamplay_text pb-5 d-inline">
+              Nihl should call you <input type="text" id="username_textbox" />
+            </div>
           </div>
-          <div class="row h-25 d-flex justify-content-end options_text">
+          <div class="row h-25 d-flex justify-content-end gamplay_text pt-5">
             Text goes here
           </div>
         </div>

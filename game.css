@@ -19,6 +19,18 @@ body {
   font-size: 30px;
 }
 
-.dialogue_text {
+.gamplay_text {
   font-size: 25px;
+}
+
+.hide_img {
+  display: none;
+}
+
+#username_textbox {
+  outline: 0;
+  background-color: #121212;
+  border-color: #eeeeee;
+  border-width: 0 0 2px;
+  color: #eeeeee;
 }
