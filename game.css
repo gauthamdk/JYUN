@@ -1,0 +1,20 @@
+@font-face {
+  font-family: MuseoSans;
+  src: url(assets/museo_sans_ssv/Museo\ Sans\ 100/MuseoSans-100.otf);
+}
+
+@font-face {
+  font-family: MuseoSans;
+  src: url(assets/museo_sans_ssv/Museo\ Sans\ 700/MuseoSans_700.otf);
+  font-weight: bold;
+}
+
+body {
+  background-color: #121212;
+  color: #eeeeee;
+  font-family: MuseoSans;
+}
+
+.corner_text {
+  font-size: 30px;
+}
