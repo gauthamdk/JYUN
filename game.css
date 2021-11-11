@@ -16,11 +16,11 @@ body {
 }
 
 .corner_text {
-  font-size: 30px;
+  font-size: 5vh;
 }
 
 .gamplay_text {
-  font-size: 25px;
+  font-size: 4vh;
 }
 
 .hide_img {
@@ -28,9 +28,20 @@ body {
 }
 
 #username_textbox {
+  width: 100%;
   outline: 0;
   background-color: #121212;
   border-color: #eeeeee;
   border-width: 0 0 2px;
   color: #eeeeee;
+}
+
+.items {
+  width: 50%;
+}
+
+@media screen and (max-width: 700px) {
+  .items {
+    width: 75%;
+  }
 }
