@@ -1,11 +1,11 @@
 @font-face {
   font-family: MuseoSans;
-  src: url(assets/museo_sans_ssv/Museo\ Sans\ 100/MuseoSans-100.otf);
+  src: url(fonts/museo_sans_ssv/Museo\ Sans\ 100/MuseoSans-100.otf);
 }
 
 @font-face {
   font-family: MuseoSans;
-  src: url(assets/museo_sans_ssv/Museo\ Sans\ 700/MuseoSans_700.otf);
+  src: url(fonts/museo_sans_ssv/Museo\ Sans\ 700/MuseoSans_700.otf);
   font-weight: bold;
 }
 
