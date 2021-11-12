@@ -3,8 +3,8 @@ const items = [];
 
 let gameOver = false;
 
-p_0 = false;
-p_1 = false;
+let p_0 = false;
+let p_1 = false;
 
 const getUsername = () => {
   $("#username_textbox").keydown((e) => {
@@ -22,8 +22,10 @@ if (player_name == "") {
   getUsername();
 }
 
+console.log(p_0);
 if (p_0) {
-  // play digging sound
+  $("#digging")[0].play();
+  console.log("here");
 }
 
 const diggingSound = () => {
