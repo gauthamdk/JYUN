@@ -97,6 +97,14 @@ const showSlide = (image, text) => {
   $("#gameplay_text").removeClass("d-none");
 };
 
+const showCemetery = (text) => {
+  $("#cemetery").removeClass("d-none");
+  $("#charpd").addClass("d-none");
+  $("#gameplay_text").html(text);
+  $("#gameplay_text").removeClass("d-none");
+  hide2options();
+};
+
 const gameScene = (p) => {
   console.log(p);
   console.log(player_name);
@@ -141,10 +149,7 @@ const gameScene = (p) => {
       "I should've become a designer or something."
     );
   } else if (p == 10) {
-    showSlide(
-      "assets/env/Cemetery.png",
-      "Disarray. A grave disturbed. The body lays in rest."
-    );
+    showCemetery("Disarray. A grave disturbed. The body lays in rest.");
   }
 };
 
