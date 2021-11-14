@@ -23,6 +23,10 @@ body {
   font-size: 4vh;
 }
 
+.options_text {
+  font-size: 2vh;
+}
+
 .hide_img {
   display: none;
 }
