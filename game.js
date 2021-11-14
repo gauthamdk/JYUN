@@ -21,8 +21,9 @@ $("#name_form").submit((e) => {
 });
 
 $("#option1").click((e) => {
-  p += 2;
-  changeScene(p);
+  p = changeScene(p);
+  console.log(`new_p ${p}`);
+  gameScene(p);
 });
 
 $("#option2").click((e) => {
@@ -49,12 +50,19 @@ const changeScene = (p) => {
     console.log("here now");
     muteDiggingSound();
     p++;
-  } else if (p == 2 || p == 3 || p == 4 || p == 5 || p == 6 || p == 7) {
+  } else if (
+    p == 2 ||
+    p == 3 ||
+    p == 4 ||
+    p == 5 ||
+    p == 6 ||
+    p == 7 ||
+    p == 9
+  ) {
     p++;
   } else if (p == 8) {
     show2options("Investigate the sounds.", "Go back to sleep");
     p++;
-  } else if (p == 9) {
   }
   console.log(`returning ${p}`);
   return p;
@@ -131,6 +139,11 @@ const gameScene = (p) => {
     showSlide(
       "assets/player/CharPD_01.png",
       "I should've become a designer or something."
+    );
+  } else if (p == 10) {
+    showSlide(
+      "assets/env/Cemetery.png",
+      "Disarray. A grave disturbed. The body lays in rest."
     );
   }
 };
