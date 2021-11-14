@@ -4,7 +4,9 @@ const items = [];
 let p = 0;
 
 $("#next_button").click((e) => {
-  changeScene(p);
+  p = changeScene(p);
+  console.log(`new_p ${p}`);
+  gameScene(p);
 });
 
 // Get user name
@@ -28,10 +30,12 @@ const changeScene = (p) => {
     $("#gameplay_text").removeClass("d-none");
     p++;
   } else if (p == 1) {
+    console.log("here now");
     muteDiggingSound();
     p++;
   }
-  gameScene(p);
+  console.log(`returning ${p}`);
+  return p;
 };
 const playDiggingSound = () => {
   $("#digging")[0].play();
