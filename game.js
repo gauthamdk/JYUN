@@ -74,7 +74,12 @@ $("#option4").click((e) => {
     gameScene(p);
   }
 });
-$("#option5").click((e) => {});
+$("#option5").click((e) => {
+  if (p == 13) {
+    p = changeScene(32);
+    gameScene(p);
+  }
+});
 
 const changeScene = (p) => {
   if (p == 0) {
@@ -168,6 +173,9 @@ const changeScene = (p) => {
     p = 12;
     p = changeScene(p);
     gameScene(p);
+  } else if (p == 32) {
+    hideOptionsP4();
+    p++;
   }
   console.log(`returning ${p}`);
   return p;
@@ -336,6 +344,11 @@ const gameScene = (p) => {
     showSlide("", "There's something familial about this piece of cloth.");
   } else if (p == 31) {
     showSlide("", "Don't remember where I've seen this before.");
+  } else if (p == 33) {
+    showSlide(
+      "assets/player/CharPD_01.png",
+      "Dear Lord it's cold. Let's head back."
+    );
   }
 };
 
