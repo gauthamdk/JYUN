@@ -36,6 +36,11 @@ $("#option1").click((e) => {
   } else if (p == 31) {
     items.add("FamiliarCloth");
     p = changeScene(p);
+  } else if (p == 39) {
+    items.add("bowarrow");
+    showWeapon("bowarrow");
+    p = changeScene(p);
+    gameScene(p);
   }
 });
 
@@ -59,6 +64,11 @@ $("#option2").click((e) => {
     p = 12;
     p = changeScene(p);
     gameScene(p);
+  } else if (p == 39) {
+    items.add("boomerang");
+    showWeapon("boomerang");
+    p = changeScene(p);
+    gameScene(p);
   }
 });
 
@@ -66,14 +76,21 @@ $("#option3").click((e) => {
   if (p == 13) {
     p = changeScene(25);
     gameScene(p);
+  } else if (p == 39) {
+    items.add("springgun");
+    showWeapon("springgun");
+    p = changeScene(p);
+    gameScene(p);
   }
 });
+
 $("#option4").click((e) => {
   if (p == 13) {
     p = changeScene(28);
     gameScene(p);
   }
 });
+
 $("#option5").click((e) => {
   if (p == 13) {
     p = changeScene(32);
@@ -115,7 +132,8 @@ const changeScene = (p) => {
     p == 33 ||
     p == 35 ||
     p == 36 ||
-    p == 37
+    p == 37 ||
+    p == 39
   ) {
     p++;
   } else if (p == 8) {
@@ -182,6 +200,9 @@ const changeScene = (p) => {
   } else if (p == 34) {
     muteEerieSound();
     p++;
+  } else if (p == 38) {
+    showWeaponsOptions();
+    p++;
   }
   console.log(`returning ${p}`);
   return p;
@@ -207,6 +228,23 @@ const showOptionsP4 = (option1, option2, option3, option4, option5) => {
   $("#option4").removeClass("d-none");
   $("#option5").removeClass("d-none");
   $("#next_button").addClass("d-none");
+};
+
+const showWeaponsOptions = () => {
+  $("#option1").text("Take the bow and arrow.");
+  $("#option2").text("Take the boomerang.");
+  $("#option3").text("Take the spring gun.");
+  $("#option1").removeClass("d-none");
+  $("#option2").removeClass("d-none");
+  $("#option3").removeClass("d-none");
+  $("#next_button").addClass("d-none");
+};
+
+const hideWeaponOptions = () => {
+  $("#option1").addClass("d-none");
+  $("#option2").addClass("d-none");
+  $("#option3").addClass("d-none");
+  $("#next_button").removeClass("d-none");
 };
 
 const hideOptionsP2 = () => {
@@ -271,6 +309,10 @@ const showCemetery = (text) => {
 const hideCemetery = () => {
   $("#cemetery").addClass("d-none");
   $("#charpd").removeClass("d-none");
+};
+
+const showWeapon = (weapon) => {
+  $(`#${weapon}`).removeClass("d-none");
 };
 
 const gameScene = (p) => {
@@ -385,6 +427,14 @@ const gameScene = (p) => {
       "assets/player/CharPD_01.png",
       "Weapon closet's back at the shed."
     );
+  } else if (p == 39) {
+    showSlide(
+      "assets/player/CharPD_01.png",
+      "Grab anything. It literally doesn't matter."
+    );
+  } else if (p == 40) {
+    hideWeaponOptions();
+    showSlide("assets/player/CharPD_01.png", "A-alright, show yourself.");
   }
 };
 
