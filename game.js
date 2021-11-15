@@ -1,5 +1,5 @@
 let player_name = "";
-const items = {};
+const items = new Set();
 
 let p = 0;
 
@@ -27,11 +27,12 @@ $("#option1").click((e) => {
   if (p == 9) {
     p = changeScene(p);
     gameScene(p);
-  }
-
-  if (p == 13) {
+  } else if (p == 13) {
     p = changeScene(p);
     gameScene(p);
+  } else if (p == 24) {
+    items.add("BrokenShovel");
+    p = changeScene(p);
   }
 });
 
@@ -51,8 +52,18 @@ $("#option2").click((e) => {
   }
 });
 
-$("#option3").click((e) => {});
-$("#option4").click((e) => {});
+$("#option3").click((e) => {
+  if (p == 13) {
+    p = changeScene(25);
+    gameScene(p);
+  }
+});
+$("#option4").click((e) => {
+  if (p == 13) {
+    p = changeScene(28);
+    gameScene(p);
+  }
+});
 $("#option5").click((e) => {});
 
 const changeScene = (p) => {
@@ -84,7 +95,8 @@ const changeScene = (p) => {
     p == 17 ||
     p == 18 ||
     p == 21 ||
-    p == 22
+    p == 22 ||
+    p == 26
   ) {
     p++;
   } else if (p == 8) {
@@ -118,6 +130,20 @@ const changeScene = (p) => {
     op2 = "Leave the shovel behind.";
     showOptionsP2(op1, op2);
     p++;
+  } else if (p == 24) {
+    hideOptionsP2();
+    addShovel();
+    p = 12;
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 25) {
+    hideOptionsP4();
+    p++;
+  } else if (p == 27) {
+    p = 12;
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 28) {
   }
   console.log(`returning ${p}`);
   return p;
@@ -166,6 +192,10 @@ const playDiggingSound = () => {
 
 const muteDiggingSound = () => {
   $("#digging").prop("muted", true);
+};
+
+const addShovel = () => {
+  $("#broken_shovel").removeClass("d-none");
 };
 
 const showSlide = (image, text) => {
@@ -268,6 +298,10 @@ const gameScene = (p) => {
     showSlide("", "Some body. Hah.");
   } else if (p == 24) {
     showSlide("", "Let's examine this back at the shed.");
+  } else if (p == 26) {
+    showSlide("", "One set of footprints from the grave.");
+  } else if (p == 27) {
+    showSlide("", "Where's the set <u>to</u> the grave?");
   }
 };
 
