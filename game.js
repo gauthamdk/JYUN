@@ -6,8 +6,10 @@ let p = 0;
 // Move to next scene
 $("#next_button").click((e) => {
   p = changeScene(p);
-  console.log(`new_p ${p}`);
-  gameScene(p);
+  if (p != 0) {
+    console.log(`new_p ${p}`);
+    gameScene(p);
+  }
 });
 
 // Get user name
@@ -41,7 +43,7 @@ const changeScene = (p) => {
     player_name = $("#username_textbox")[0].value;
     if (player_name == "") {
       alert("enter name");
-      return;
+      return 0;
     }
     $("#username").addClass("d-none");
     $("#gameplay_text").removeClass("d-none");
@@ -57,11 +59,15 @@ const changeScene = (p) => {
     p == 5 ||
     p == 6 ||
     p == 7 ||
-    p == 9
+    p == 9 ||
+    p == 11
   ) {
     p++;
   } else if (p == 8) {
     show2options("Investigate the sounds.", "Go back to sleep");
+    p++;
+  } else if (p == 10) {
+    hideCemetery();
     p++;
   }
   console.log(`returning ${p}`);
@@ -103,6 +109,11 @@ const showCemetery = (text) => {
   $("#gameplay_text").html(text);
   $("#gameplay_text").removeClass("d-none");
   hide2options();
+};
+
+const hideCemetery = () => {
+  $("#cemetery").addClass("d-none");
+  $("#charpd").removeClass("d-none");
 };
 
 const gameScene = (p) => {
@@ -150,6 +161,16 @@ const gameScene = (p) => {
     );
   } else if (p == 10) {
     showCemetery("Disarray. A grave disturbed. The body lays in rest.");
+  } else if (p == 11) {
+    showSlide(
+      "assets/player/CharPD_01.png",
+      "What on earth? I mean un...earth?"
+    );
+  } else if (p == 12) {
+    showSlide(
+      "assets/player/CharPD_01.png",
+      "...place and time, " + player_name
+    );
   }
 };
 
