@@ -1,5 +1,5 @@
 let player_name = "";
-const items = [];
+const items = {};
 
 let p = 0;
 
@@ -28,6 +28,11 @@ $("#option1").click((e) => {
     p = changeScene(p);
     gameScene(p);
   }
+
+  if (p == 13) {
+    p = changeScene(p);
+    gameScene(p);
+  }
 });
 
 $("#option2").click((e) => {
@@ -45,6 +50,7 @@ $("#option2").click((e) => {
 $("#option3").click((e) => {});
 $("#option4").click((e) => {});
 $("#option5").click((e) => {});
+
 const changeScene = (p) => {
   if (p == 0) {
     player_name = $("#username_textbox")[0].value;
@@ -67,7 +73,12 @@ const changeScene = (p) => {
     p == 6 ||
     p == 7 ||
     p == 9 ||
-    p == 11
+    p == 11 ||
+    p == 14 ||
+    p == 15 ||
+    p == 16 ||
+    p == 17 ||
+    p == 18
   ) {
     p++;
   } else if (p == 8) {
@@ -84,6 +95,12 @@ const changeScene = (p) => {
     op5 = "Go back to the shed.";
     showOptionsP4(op1, op2, op3, op4, op5);
     p++;
+  } else if (p == 13) {
+    hideOptionsP4();
+    p++;
+  } else if (p == 19) {
+    showOptionsP4();
+    p = 13;
   }
   console.log(`returning ${p}`);
   return p;
@@ -114,6 +131,15 @@ const showOptionsP4 = (option1, option2, option3, option4, option5) => {
 const hide2options = () => {
   $("#option1").addClass("d-none");
   $("#option2").addClass("d-none");
+  $("#next_button").removeClass("d-none");
+};
+
+const hideOptionsP4 = (option1, option2, option3, option4, option5) => {
+  $("#option1").addClass("d-none");
+  $("#option2").addClass("d-none");
+  $("#option3").addClass("d-none");
+  $("#option4").addClass("d-none");
+  $("#option5").addClass("d-none");
   $("#next_button").removeClass("d-none");
 };
 
@@ -205,6 +231,18 @@ const gameScene = (p) => {
       "assets/player/CharPD_01.png",
       "I hope they pay me extra to clean this mess up."
     );
+  } else if (p == 14) {
+    showSlide("", "The body seems undisturbed for the most part. Except...");
+  } else if (p == 15) {
+    showSlide("", "... the linen around the face.");
+  } else if (p == 16) {
+    showSlide("", "It's been removed carefully.");
+  } else if (p == 17) {
+    showSlide("", "...");
+  } else if (p == 18) {
+    showSlide("", "Don't recognize her.");
+  } else if (p == 19) {
+    showSlide("", "She seems...ageless.");
   }
 };
 
