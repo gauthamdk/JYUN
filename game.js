@@ -22,22 +22,29 @@ $("#name_form").submit((e) => {
   gameScene(p);
 });
 
+// OPTION LISTENERS
 $("#option1").click((e) => {
-  p = changeScene(p);
-  console.log(`new_p ${p}`);
-  gameScene(p);
+  if (p == 9) {
+    p = changeScene(p);
+    gameScene(p);
+  }
 });
 
 $("#option2").click((e) => {
-  showSlide(
-    "assets/player/CharPD_01.png",
-    "They're still digging. Will they stop if I quit?"
-  );
-  hide2options();
-  p = 3;
-  changeScene(p);
+  if (p == 9) {
+    showSlide(
+      "assets/player/CharPD_01.png",
+      "They're still digging. Will they stop if I quit?"
+    );
+    hide2options();
+    p = 3;
+    changeScene(p);
+  }
 });
 
+$("#option3").click((e) => {});
+$("#option4").click((e) => {});
+$("#option5").click((e) => {});
 const changeScene = (p) => {
   if (p == 0) {
     player_name = $("#username_textbox")[0].value;
@@ -64,21 +71,43 @@ const changeScene = (p) => {
   ) {
     p++;
   } else if (p == 8) {
-    show2options("Investigate the sounds.", "Go back to sleep");
+    showOptionsP2("Investigate the sounds.", "Go back to sleep");
     p++;
   } else if (p == 10) {
     hideCemetery();
+    p++;
+  } else if (p == 12) {
+    op1 = "Inspect the body.";
+    op2 = "Inspect the broken shovel.";
+    op3 = "Inspect the footprints.";
+    op4 = "Inspect the familiar piece of cloth.";
+    op5 = "Go back to the shed.";
+    showOptionsP4(op1, op2, op3, op4, op5);
     p++;
   }
   console.log(`returning ${p}`);
   return p;
 };
 
-const show2options = (option1, option2) => {
+const showOptionsP2 = (option1, option2) => {
   $("#option1").text(option1);
   $("#option2").text(option2);
   $("#option1").removeClass("d-none");
   $("#option2").removeClass("d-none");
+  $("#next_button").addClass("d-none");
+};
+
+const showOptionsP4 = (option1, option2, option3, option4, option5) => {
+  $("#option1").text(option1);
+  $("#option2").text(option2);
+  $("#option3").text(option3);
+  $("#option4").text(option4);
+  $("#option5").text(option5);
+  $("#option1").removeClass("d-none");
+  $("#option2").removeClass("d-none");
+  $("#option3").removeClass("d-none");
+  $("#option4").removeClass("d-none");
+  $("#option5").removeClass("d-none");
   $("#next_button").addClass("d-none");
 };
 
@@ -170,6 +199,11 @@ const gameScene = (p) => {
     showSlide(
       "assets/player/CharPD_01.png",
       "...place and time, " + player_name
+    );
+  } else if (p == 13) {
+    showSlide(
+      "assets/player/CharPD_01.png",
+      "I hope they pay me extra to clean this mess up."
     );
   }
 };
