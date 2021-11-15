@@ -1,5 +1,5 @@
 let player_name = "";
-const items = [];
+const items = new Set();
 
 let p = 0;
 
@@ -22,21 +22,59 @@ $("#name_form").submit((e) => {
   gameScene(p);
 });
 
+// OPTION LISTENERS
 $("#option1").click((e) => {
-  p = changeScene(p);
-  console.log(`new_p ${p}`);
-  gameScene(p);
+  if (p == 9) {
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 13) {
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 24) {
+    items.add("BrokenShovel");
+    p = changeScene(p);
+  } else if (p == 31) {
+    items.add("FamiliarCloth");
+    p = changeScene(p);
+  }
 });
 
 $("#option2").click((e) => {
-  showSlide(
-    "assets/player/CharPD_01.png",
-    "They're still digging. Will they stop if I quit?"
-  );
-  hide2options();
-  p = 3;
-  changeScene(p);
+  if (p == 9) {
+    showSlide(
+      "assets/player/CharPD_01.png",
+      "They're still digging. Will they stop if I quit?"
+    );
+    hideOptionsP2();
+    p = 3;
+    changeScene(p);
+  } else if (p == 13) {
+    p = changeScene(20);
+    gameScene(p);
+  } else if (p == 24) {
+    p = 12;
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 31) {
+    p = 12;
+    p = changeScene(p);
+    gameScene(p);
+  }
 });
+
+$("#option3").click((e) => {
+  if (p == 13) {
+    p = changeScene(25);
+    gameScene(p);
+  }
+});
+$("#option4").click((e) => {
+  if (p == 13) {
+    p = changeScene(28);
+    gameScene(p);
+  }
+});
+$("#option5").click((e) => {});
 
 const changeScene = (p) => {
   if (p == 0) {
@@ -60,21 +98,82 @@ const changeScene = (p) => {
     p == 6 ||
     p == 7 ||
     p == 9 ||
-    p == 11
+    p == 11 ||
+    p == 14 ||
+    p == 15 ||
+    p == 16 ||
+    p == 17 ||
+    p == 18 ||
+    p == 21 ||
+    p == 22 ||
+    p == 26 ||
+    p == 29
   ) {
     p++;
   } else if (p == 8) {
-    show2options("Investigate the sounds.", "Go back to sleep");
+    op1 = "Investigate the sounds.";
+    op2 = "Go back to sleep";
+    showOptionsP2(op1, op2);
     p++;
   } else if (p == 10) {
     hideCemetery();
     p++;
+  } else if (p == 12) {
+    op1 = "Inspect the body.";
+    op2 = "Inspect the broken shovel.";
+    op3 = "Inspect the footprints.";
+    op4 = "Inspect the familiar piece of cloth.";
+    op5 = "Go back to the shed.";
+    showOptionsP4(op1, op2, op3, op4, op5);
+    p++;
+  } else if (p == 13) {
+    hideOptionsP4();
+    p++;
+  } else if (p == 19) {
+    p = 12;
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 20) {
+    hideOptionsP4();
+    p++;
+  } else if (p == 23) {
+    op1 = "Take the shovel.";
+    op2 = "Leave the shovel behind.";
+    showOptionsP2(op1, op2);
+    p++;
+  } else if (p == 24) {
+    hideOptionsP2();
+    addShovel();
+    p = 12;
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 25) {
+    hideOptionsP4();
+    p++;
+  } else if (p == 27) {
+    p = 12;
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 28) {
+    hideOptionsP4();
+    p++;
+  } else if (p == 30) {
+    op1 = "Take the piece of cloth.";
+    op2 = "Leave the piece of cloth.";
+    showOptionsP2(op1, op2);
+    p++;
+  } else if (p == 31) {
+    hideOptionsP2();
+    addFamiliarCloth();
+    p = 12;
+    p = changeScene(p);
+    gameScene(p);
   }
   console.log(`returning ${p}`);
   return p;
 };
 
-const show2options = (option1, option2) => {
+const showOptionsP2 = (option1, option2) => {
   $("#option1").text(option1);
   $("#option2").text(option2);
   $("#option1").removeClass("d-none");
@@ -82,9 +181,32 @@ const show2options = (option1, option2) => {
   $("#next_button").addClass("d-none");
 };
 
-const hide2options = () => {
+const showOptionsP4 = (option1, option2, option3, option4, option5) => {
+  $("#option1").text(option1);
+  $("#option2").text(option2);
+  $("#option3").text(option3);
+  $("#option4").text(option4);
+  $("#option5").text(option5);
+  $("#option1").removeClass("d-none");
+  $("#option2").removeClass("d-none");
+  $("#option3").removeClass("d-none");
+  $("#option4").removeClass("d-none");
+  $("#option5").removeClass("d-none");
+  $("#next_button").addClass("d-none");
+};
+
+const hideOptionsP2 = () => {
   $("#option1").addClass("d-none");
   $("#option2").addClass("d-none");
+  $("#next_button").removeClass("d-none");
+};
+
+const hideOptionsP4 = (option1, option2, option3, option4, option5) => {
+  $("#option1").addClass("d-none");
+  $("#option2").addClass("d-none");
+  $("#option3").addClass("d-none");
+  $("#option4").addClass("d-none");
+  $("#option5").addClass("d-none");
   $("#next_button").removeClass("d-none");
 };
 
@@ -94,6 +216,14 @@ const playDiggingSound = () => {
 
 const muteDiggingSound = () => {
   $("#digging").prop("muted", true);
+};
+
+const addShovel = () => {
+  $("#broken_shovel").removeClass("d-none");
+};
+
+const addFamiliarCloth = () => {
+  $("#familiar_cloth").removeClass("d-none");
 };
 
 const showSlide = (image, text) => {
@@ -108,7 +238,7 @@ const showCemetery = (text) => {
   $("#charpd").addClass("d-none");
   $("#gameplay_text").html(text);
   $("#gameplay_text").removeClass("d-none");
-  hide2options();
+  hideOptionsP2();
 };
 
 const hideCemetery = () => {
@@ -171,6 +301,41 @@ const gameScene = (p) => {
       "assets/player/CharPD_01.png",
       "...place and time, " + player_name
     );
+  } else if (p == 13) {
+    showSlide(
+      "assets/player/CharPD_01.png",
+      "I hope they pay me extra to clean this mess up."
+    );
+  } else if (p == 14) {
+    showSlide("", "The body seems undisturbed for the most part. Except...");
+  } else if (p == 15) {
+    showSlide("", "... the linen around the face.");
+  } else if (p == 16) {
+    showSlide("", "It's been removed carefully.");
+  } else if (p == 17) {
+    showSlide("", "...");
+  } else if (p == 18) {
+    showSlide("", "Don't recognize her.");
+  } else if (p == 19) {
+    showSlide("", "She seems...ageless.");
+  } else if (p == 21) {
+    showSlide("", "The shovel snapped into two under duress.");
+  } else if (p == 22) {
+    showSlide("", "Somebody was very desperate.");
+  } else if (p == 23) {
+    showSlide("", "Some body. Hah.");
+  } else if (p == 24) {
+    showSlide("", "Let's examine this back at the shed.");
+  } else if (p == 26) {
+    showSlide("", "One set of footprints from the grave.");
+  } else if (p == 27) {
+    showSlide("", "Where's the set <u>to</u> the grave?");
+  } else if (p == 29) {
+    showSlide("", "Hemp.");
+  } else if (p == 30) {
+    showSlide("", "There's something familial about this piece of cloth.");
+  } else if (p == 31) {
+    showSlide("", "Don't remember where I've seen this before.");
   }
 };
 
