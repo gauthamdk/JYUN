@@ -92,7 +92,6 @@ const changeScene = (p) => {
     $("#gameplay_text").removeClass("d-none");
     p++;
   } else if (p == 1) {
-    console.log("here now");
     muteDiggingSound();
     p++;
   } else if (
@@ -112,7 +111,11 @@ const changeScene = (p) => {
     p == 21 ||
     p == 22 ||
     p == 26 ||
-    p == 29
+    p == 29 ||
+    p == 33 ||
+    p == 35 ||
+    p == 36 ||
+    p == 37
   ) {
     p++;
   } else if (p == 8) {
@@ -176,6 +179,9 @@ const changeScene = (p) => {
   } else if (p == 32) {
     hideOptionsP4();
     p++;
+  } else if (p == 34) {
+    muteEerieSound();
+    p++;
   }
   console.log(`returning ${p}`);
   return p;
@@ -226,6 +232,14 @@ const muteDiggingSound = () => {
   $("#digging").prop("muted", true);
 };
 
+const playEerieSound = () => {
+  $("#eerie")[0].play();
+};
+
+const muteEerieSound = () => {
+  $("#eerie").prop("muted", true);
+};
+
 const addShovel = () => {
   $("#broken_shovel").removeClass("d-none");
 };
@@ -239,6 +253,11 @@ const showSlide = (image, text) => {
   $("#charpd").removeClass("d-none");
   $("#gameplay_text").html(text);
   $("#gameplay_text").removeClass("d-none");
+};
+
+const hideSlide = () => {
+  $("#charpd").addClass("d-none");
+  $("#gameplay_text").addClass("d-none");
 };
 
 const showCemetery = (text) => {
@@ -348,6 +367,23 @@ const gameScene = (p) => {
     showSlide(
       "assets/player/CharPD_01.png",
       "Dear Lord it's cold. Let's head back."
+    );
+  } else if (p == 34) {
+    hideSlide();
+    playEerieSound();
+  } else if (p == 35) {
+    showSlide("assets/player/CharPD_01.png", "What the hell was that?");
+  } else if (p == 36) {
+    showSlide("assets/player/CharPD_01.png", "...");
+  } else if (p == 37) {
+    showSlide(
+      "assets/player/CharPD_01.png",
+      "Nope. Out of here <u>right now</u>"
+    );
+  } else if (p == 38) {
+    showSlide(
+      "assets/player/CharPD_01.png",
+      "Weapon closet's back at the shed."
     );
   }
 };
