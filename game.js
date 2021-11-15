@@ -41,9 +41,13 @@ $("#option2").click((e) => {
       "assets/player/CharPD_01.png",
       "They're still digging. Will they stop if I quit?"
     );
-    hide2options();
+    hideOptionsP2();
     p = 3;
     changeScene(p);
+  }
+  if (p == 13) {
+    p = changeScene(20);
+    gameScene(p);
   }
 });
 
@@ -78,11 +82,15 @@ const changeScene = (p) => {
     p == 15 ||
     p == 16 ||
     p == 17 ||
-    p == 18
+    p == 18 ||
+    p == 21 ||
+    p == 22
   ) {
     p++;
   } else if (p == 8) {
-    showOptionsP2("Investigate the sounds.", "Go back to sleep");
+    op1 = "Investigate the sounds.";
+    op2 = "Go back to sleep";
+    showOptionsP2(op1, op2);
     p++;
   } else if (p == 10) {
     hideCemetery();
@@ -99,8 +107,17 @@ const changeScene = (p) => {
     hideOptionsP4();
     p++;
   } else if (p == 19) {
-    showOptionsP4();
-    p = 13;
+    p = 12;
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 20) {
+    hideOptionsP4();
+    p++;
+  } else if (p == 23) {
+    op1 = "Take the shovel.";
+    op2 = "Leave the shovel behind.";
+    showOptionsP2(op1, op2);
+    p++;
   }
   console.log(`returning ${p}`);
   return p;
@@ -128,7 +145,7 @@ const showOptionsP4 = (option1, option2, option3, option4, option5) => {
   $("#next_button").addClass("d-none");
 };
 
-const hide2options = () => {
+const hideOptionsP2 = () => {
   $("#option1").addClass("d-none");
   $("#option2").addClass("d-none");
   $("#next_button").removeClass("d-none");
@@ -163,7 +180,7 @@ const showCemetery = (text) => {
   $("#charpd").addClass("d-none");
   $("#gameplay_text").html(text);
   $("#gameplay_text").removeClass("d-none");
-  hide2options();
+  hideOptionsP2();
 };
 
 const hideCemetery = () => {
@@ -243,6 +260,14 @@ const gameScene = (p) => {
     showSlide("", "Don't recognize her.");
   } else if (p == 19) {
     showSlide("", "She seems...ageless.");
+  } else if (p == 21) {
+    showSlide("", "The shovel snapped into two under duress.");
+  } else if (p == 22) {
+    showSlide("", "Somebody was very desperate.");
+  } else if (p == 23) {
+    showSlide("", "Some body. Hah.");
+  } else if (p == 24) {
+    showSlide("", "Let's examine this back at the shed.");
   }
 };
 
