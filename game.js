@@ -1,3 +1,5 @@
+import { playDiggingSound, muteDiggingSound } from "./DiggingSound.js";
+
 let player_name = "";
 let items = new Set();
 
@@ -260,14 +262,6 @@ const hideOptionsP4 = (option1, option2, option3, option4, option5) => {
   $("#option4").addClass("d-none");
   $("#option5").addClass("d-none");
   $("#next_button").removeClass("d-none");
-};
-
-const playDiggingSound = () => {
-  $("#digging")[0].play();
-};
-
-const muteDiggingSound = () => {
-  $("#digging").prop("muted", true);
 };
 
 const playEerieSound = () => {
