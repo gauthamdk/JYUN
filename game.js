@@ -1,4 +1,6 @@
-import { playDiggingSound, muteDiggingSound } from "./DiggingSound.js";
+import { playDiggingSound, muteDiggingSound } from "./diggingSound.js";
+import { playEerieSound, muteEerieSound } from "./eerieSound.js";
+import { showOptionsP2, hideOptionsP2 } from "./optionsP2.js";
 
 let player_name = "";
 let items = new Set();
@@ -210,14 +212,6 @@ const changeScene = (p) => {
   return p;
 };
 
-const showOptionsP2 = (option1, option2) => {
-  $("#option1").text(option1);
-  $("#option2").text(option2);
-  $("#option1").removeClass("d-none");
-  $("#option2").removeClass("d-none");
-  $("#next_button").addClass("d-none");
-};
-
 const showOptionsP4 = (option1, option2, option3, option4, option5) => {
   $("#option1").text(option1);
   $("#option2").text(option2);
@@ -249,12 +243,6 @@ const hideWeaponOptions = () => {
   $("#next_button").removeClass("d-none");
 };
 
-const hideOptionsP2 = () => {
-  $("#option1").addClass("d-none");
-  $("#option2").addClass("d-none");
-  $("#next_button").removeClass("d-none");
-};
-
 const hideOptionsP4 = (option1, option2, option3, option4, option5) => {
   $("#option1").addClass("d-none");
   $("#option2").addClass("d-none");
@@ -262,14 +250,6 @@ const hideOptionsP4 = (option1, option2, option3, option4, option5) => {
   $("#option4").addClass("d-none");
   $("#option5").addClass("d-none");
   $("#next_button").removeClass("d-none");
-};
-
-const playEerieSound = () => {
-  $("#eerie")[0].play();
-};
-
-const muteEerieSound = () => {
-  $("#eerie").prop("muted", true);
 };
 
 const addShovel = () => {
