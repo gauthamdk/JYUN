@@ -1,9 +1,10 @@
 import { playDiggingSound, muteDiggingSound } from "./diggingSound.js";
 import { playEerieSound, muteEerieSound } from "./eerieSound.js";
+import { showOptionsP1, hideOptionsP1 } from "./optionsP1.js";
 import { showOptionsP2, hideOptionsP2 } from "./optionsP2.js";
 import { showOptionsP4, hideOptionsP4 } from "./optionsP4.js";
 import { showWeaponsOptions, hideWeaponOptions } from "./weaponOptions.js";
-import { addShovel, addFamiliarCloth } from "./items.js";
+import { addShovel, addFamiliarCloth, addPhotograph, addBloodSample } from "./items.js";
 import { showSlide, hideSlide } from "./slideshow.js";
 import { showCemetery, hideCemetery } from "./cemetery.js";
 import { showWeapon } from "./weapon.js";
@@ -12,6 +13,8 @@ let player_name = "";
 let items = new Set();
 
 let p = 0;
+let k = 0; // keep track of number of items interacted with
+console.log("k = ",k);
 
 // Move to next scene
 $("#next_button").click((e) => {
@@ -38,6 +41,8 @@ $("#option1").click((e) => {
     p = changeScene(p);
     gameScene(p);
   } else if (p == 13) {
+    k++ //interacted with body
+    console.log("k = ",k);
     p = changeScene(p);
     gameScene(p);
   } else if (p == 24) {
@@ -49,6 +54,20 @@ $("#option1").click((e) => {
   } else if (p == 39) {
     items.add("bowarrow");
     showWeapon("bowarrow");
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 46){
+    items.add("Photograph");
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 50){
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 57){
+    items.add("BloodSample");
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 58){
     p = changeScene(p);
     gameScene(p);
   }
@@ -64,6 +83,8 @@ $("#option2").click((e) => {
     p = 3;
     changeScene(p);
   } else if (p == 13) {
+    k++ //interacted with shovel
+    console.log("k = ",k);
     p = changeScene(20);
     gameScene(p);
   } else if (p == 24) {
@@ -79,11 +100,21 @@ $("#option2").click((e) => {
     showWeapon("boomerang");
     p = changeScene(p);
     gameScene(p);
+  } else if (p == 46){
+    p =60;
+    p = changeScene(p);
+    gameScene(p);
+  }else if (p == 57){
+    p =60;
+    p = changeScene(p);
+    gameScene(p);
   }
 });
 
 $("#option3").click((e) => {
   if (p == 13) {
+    k++ //interacted with footprints
+    console.log("k = ",k);
     p = changeScene(25);
     gameScene(p);
   } else if (p == 39) {
@@ -96,6 +127,8 @@ $("#option3").click((e) => {
 
 $("#option4").click((e) => {
   if (p == 13) {
+    k++ //interacted with piece of cloth
+    console.log("k = ",k);
     p = changeScene(28);
     gameScene(p);
   }
@@ -118,7 +151,7 @@ const changeScene = (p) => {
     $("#username").addClass("d-none");
     $("#gameplay_text").removeClass("d-none");
     p++;
-  } else if (p == 1) {
+  } else if (p == 1 || p == 66) {
     muteDiggingSound();
     p++;
   } else if (
@@ -143,7 +176,23 @@ const changeScene = (p) => {
     p == 35 ||
     p == 36 ||
     p == 37 ||
-    p == 39
+    p == 39 ||
+    p == 40 ||
+    p == 41 ||
+    p == 42 ||
+    p == 44 ||
+    p == 47 ||
+    p == 48 ||
+    p == 51 ||
+    p == 53 ||
+    p == 54 ||
+    p == 55 ||
+    p == 59 ||
+    p == 61 ||
+    p == 62 ||
+    p == 63 ||
+    p == 64 ||
+    p == 65 
   ) {
     p++;
   } else if (p == 8) {
@@ -213,6 +262,65 @@ const changeScene = (p) => {
   } else if (p == 38) {
     showWeaponsOptions();
     p++;
+  } else if (p == 43){
+    if (k == 3 || k ==4)
+    {
+      p ++;
+    }
+    else if (k == 0 || k == 1 || k == 2){
+      p = 53;
+    }
+  } else if (p == 45){
+    let op1 = "Take a photo of the footprints.";
+    let op2 = "Go back to the shed.";
+    showOptionsP2(op1, op2);
+    p++;
+  } else if (p == 46){
+    hideOptionsP2();
+    if (items.has("Photograph")){
+      addPhotograph();
+    }
+    else if (items.has("BloodSample")){
+      addBloodSample();
+    }
+    p++;
+  }else if (p == 49){
+    if (items.has("Photograph")){
+      let op1 = "Examine the photograph.";
+      showOptionsP1(op1);
+      p++;
+    }
+    else if (items.has("BloodSample")){
+      let op1 = "Examine the blood sample.";
+      showOptionsP1(op1);
+      p = 58;
+    }
+  } else if (p == 50){
+    hideOptionsP1();
+    p++;
+  } else if (p == 52){
+    p = 60;
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 56){
+    let op1 = "Take a sample.";
+    let op2 = "Go back to the shed.";
+    showOptionsP2(op1, op2);
+    p++;
+  } else if (p == 57){
+    hideOptionsP2();
+    if (items.has("BloodSample")){
+      addBloodSample();
+    }
+    p = 46;
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 58){
+    hideOptionsP1();
+    p++;
+  }else if(p == 60){
+    hideOptionsP2();
+    p++;
   }
   console.log(`returning ${p}`);
   return p;
@@ -227,10 +335,10 @@ const gameScene = (p) => {
   } else if (p == 2) {
     showSlide(
       "assets/player/CharPD_01.png",
-      "That's not a great sound to hear in a cemetery"
+      "That's not a great sound to hear in a cemetery."
     );
   } else if (p == 3) {
-    showSlide("assets/player/CharPD_01.png", "Especially after hours");
+    showSlide("assets/player/CharPD_01.png", "Especially after hours.");
   } else if (p == 4) {
     showSlide(
       "assets/player/CharPD_01.png",
@@ -338,6 +446,61 @@ const gameScene = (p) => {
   } else if (p == 40) {
     hideWeaponOptions();
     showSlide("assets/player/CharPD_01.png", "A-alright, show yourself.");
+  } else if (p == 41) {
+    showSlide("", "");
+  } else if (p == 42) {
+    showSlide("assets/player/CharPD_02.png", "Death!");
+  } else if (p == 43) {
+    showSlide("", "The projectile tears through the air, almost slowing time.");
+  } else if (p == 44) { //what happens if they miss
+    showSlide("", "It misses. The shadow jumps, and dissolves into the night.");
+  } else if (p == 45) {
+    showSlide("assets/player/CharPD_03.png", "Can't believe I missed.");
+  } else if (p == 46) {
+    showSlide("assets/player/CharPD_03.png", "Aren't those the same footprints as before?");
+  } else if (p == 47) {
+    showSlide("assets/player/CharPD_03.png", "It's late. And I don't know what the hell is happening.");
+  } else if (p == 48) {
+    showSlide("assets/player/CharPD_03.png", "Let's go back.");
+  } else if (p == 49) {
+    showSlide("", "...");
+  } else if (p == 50) {
+    showSlide("assets/player/CharPD_03.png", "Let's see if I can spot more clues.");
+  } else if (p == 51) {
+    showSlide("", "The footprints are small and pristine.");
+  } else if (p == 52) {
+    showSlide("", "Who has perfect footprints like that?");
+  } else if (p == 53) { //what happens if they DON'T miss
+    showSlide("", "Flesh tears. The shadow cries, and bleeds into the night.");
+  } else if (p == 54) { 
+    showSlide("assets/player/CharPD_03.png", "...she sounds familiar...");
+  } else if (p == 55) { 
+    showSlide("assets/player/CharPD_03.png", "Should've gotten a better shot.");
+  } else if (p == 56) { 
+    showSlide("assets/player/CharPD_03.png", "Although, hey. Not too bad of a shot. Made contact at least.");
+  } else if (p == 57) { 
+    showSlide("assets/player/CharPD_03.png", "Blood... Let's bottle it up.");
+  } else if (p == 58) { 
+    showSlide("assets/player/CharPD_03.png", "What do we have here?");
+  } else if (p == 59) {
+    showSlide("", "It's blood.");
+  } else if (p == 60) { 
+    showSlide("", "It smells like smoke.");
+  } else if (p == 61) { // P9 starts here
+    showSlide("assets/player/CharPD_03.png", "These kinds of weirdos. God knows what they want with the body.");
+  } else if (p == 62) {
+    showSlide("assets/player/CharPD_03.png", "Gotta catch her in the act, set up a little surveillance kit. Where's the tripod?");
+  } else if (p == 63) {
+    showSlide("assets/player/CharPD_03.png", "...");
+  } else if (p == 64) { 
+    showSlide("assets/player/CharPD_03.png", "Done.");
+  } else if (p == 65) {
+    showSlide("assets/player/CharPD_03.png", "I guess all we can do is sleep and wait.");
+  } else if (p == 66) {
+    showSlide("", "");
+    playDiggingSound();
+  } else if (p == 67) {
+    showSlide("", "...");
   }
 };
 
