@@ -1,5 +1,5 @@
 let player_name = "";
-const items = new Set();
+let items = new Set();
 
 let p = 0;
 
@@ -36,6 +36,11 @@ $("#option1").click((e) => {
   } else if (p == 31) {
     items.add("FamiliarCloth");
     p = changeScene(p);
+  } else if (p == 39) {
+    items.add("bowarrow");
+    showWeapon("bowarrow");
+    p = changeScene(p);
+    gameScene(p);
   }
 });
 
@@ -59,6 +64,11 @@ $("#option2").click((e) => {
     p = 12;
     p = changeScene(p);
     gameScene(p);
+  } else if (p == 39) {
+    items.add("boomerang");
+    showWeapon("boomerang");
+    p = changeScene(p);
+    gameScene(p);
   }
 });
 
@@ -66,15 +76,27 @@ $("#option3").click((e) => {
   if (p == 13) {
     p = changeScene(25);
     gameScene(p);
+  } else if (p == 39) {
+    items.add("springgun");
+    showWeapon("springgun");
+    p = changeScene(p);
+    gameScene(p);
   }
 });
+
 $("#option4").click((e) => {
   if (p == 13) {
     p = changeScene(28);
     gameScene(p);
   }
 });
-$("#option5").click((e) => {});
+
+$("#option5").click((e) => {
+  if (p == 13) {
+    p = changeScene(32);
+    gameScene(p);
+  }
+});
 
 const changeScene = (p) => {
   if (p == 0) {
@@ -87,7 +109,6 @@ const changeScene = (p) => {
     $("#gameplay_text").removeClass("d-none");
     p++;
   } else if (p == 1) {
-    console.log("here now");
     muteDiggingSound();
     p++;
   } else if (
@@ -107,7 +128,12 @@ const changeScene = (p) => {
     p == 21 ||
     p == 22 ||
     p == 26 ||
-    p == 29
+    p == 29 ||
+    p == 33 ||
+    p == 35 ||
+    p == 36 ||
+    p == 37 ||
+    p == 39
   ) {
     p++;
   } else if (p == 8) {
@@ -168,6 +194,15 @@ const changeScene = (p) => {
     p = 12;
     p = changeScene(p);
     gameScene(p);
+  } else if (p == 32) {
+    hideOptionsP4();
+    p++;
+  } else if (p == 34) {
+    muteEerieSound();
+    p++;
+  } else if (p == 38) {
+    showWeaponsOptions();
+    p++;
   }
   console.log(`returning ${p}`);
   return p;
@@ -195,6 +230,23 @@ const showOptionsP4 = (option1, option2, option3, option4, option5) => {
   $("#next_button").addClass("d-none");
 };
 
+const showWeaponsOptions = () => {
+  $("#option1").text("Take the bow and arrow.");
+  $("#option2").text("Take the boomerang.");
+  $("#option3").text("Take the spring gun.");
+  $("#option1").removeClass("d-none");
+  $("#option2").removeClass("d-none");
+  $("#option3").removeClass("d-none");
+  $("#next_button").addClass("d-none");
+};
+
+const hideWeaponOptions = () => {
+  $("#option1").addClass("d-none");
+  $("#option2").addClass("d-none");
+  $("#option3").addClass("d-none");
+  $("#next_button").removeClass("d-none");
+};
+
 const hideOptionsP2 = () => {
   $("#option1").addClass("d-none");
   $("#option2").addClass("d-none");
@@ -218,6 +270,14 @@ const muteDiggingSound = () => {
   $("#digging").prop("muted", true);
 };
 
+const playEerieSound = () => {
+  $("#eerie")[0].play();
+};
+
+const muteEerieSound = () => {
+  $("#eerie").prop("muted", true);
+};
+
 const addShovel = () => {
   $("#broken_shovel").removeClass("d-none");
 };
@@ -233,6 +293,11 @@ const showSlide = (image, text) => {
   $("#gameplay_text").removeClass("d-none");
 };
 
+const hideSlide = () => {
+  $("#charpd").addClass("d-none");
+  $("#gameplay_text").addClass("d-none");
+};
+
 const showCemetery = (text) => {
   $("#cemetery").removeClass("d-none");
   $("#charpd").addClass("d-none");
@@ -244,6 +309,10 @@ const showCemetery = (text) => {
 const hideCemetery = () => {
   $("#cemetery").addClass("d-none");
   $("#charpd").removeClass("d-none");
+};
+
+const showWeapon = (weapon) => {
+  $(`#${weapon}`).removeClass("d-none");
 };
 
 const gameScene = (p) => {
@@ -336,6 +405,36 @@ const gameScene = (p) => {
     showSlide("", "There's something familial about this piece of cloth.");
   } else if (p == 31) {
     showSlide("", "Don't remember where I've seen this before.");
+  } else if (p == 33) {
+    showSlide(
+      "assets/player/CharPD_01.png",
+      "Dear Lord it's cold. Let's head back."
+    );
+  } else if (p == 34) {
+    hideSlide();
+    playEerieSound();
+  } else if (p == 35) {
+    showSlide("assets/player/CharPD_01.png", "What the hell was that?");
+  } else if (p == 36) {
+    showSlide("assets/player/CharPD_01.png", "...");
+  } else if (p == 37) {
+    showSlide(
+      "assets/player/CharPD_01.png",
+      "Nope. Out of here <u>right now</u>"
+    );
+  } else if (p == 38) {
+    showSlide(
+      "assets/player/CharPD_01.png",
+      "Weapon closet's back at the shed."
+    );
+  } else if (p == 39) {
+    showSlide(
+      "assets/player/CharPD_01.png",
+      "Grab anything. It literally doesn't matter."
+    );
+  } else if (p == 40) {
+    hideWeaponOptions();
+    showSlide("assets/player/CharPD_01.png", "A-alright, show yourself.");
   }
 };
 
