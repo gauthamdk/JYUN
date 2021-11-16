@@ -173,8 +173,8 @@ const changeScene = (p) => {
     hideOptionsP4();
     p++;
   } else if (p == 23) {
-    op1 = "Take the shovel.";
-    op2 = "Leave the shovel behind.";
+    let op1 = "Take the shovel.";
+    let op2 = "Leave the shovel behind.";
     showOptionsP2(op1, op2);
     p++;
   } else if (p == 24) {
@@ -194,8 +194,8 @@ const changeScene = (p) => {
     hideOptionsP4();
     p++;
   } else if (p == 30) {
-    op1 = "Take the piece of cloth.";
-    op2 = "Leave the piece of cloth.";
+    let op1 = "Take the piece of cloth.";
+    let op2 = "Leave the piece of cloth.";
     showOptionsP2(op1, op2);
     p++;
   } else if (p == 31) {
