@@ -1,5 +1,5 @@
 let player_name = "";
-const items = new Set();
+let items = new Set();
 
 let p = 0;
 
