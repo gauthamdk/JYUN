@@ -1,6 +1,8 @@
 import { playDiggingSound, muteDiggingSound } from "./diggingSound.js";
 import { playEerieSound, muteEerieSound } from "./eerieSound.js";
 import { showOptionsP2, hideOptionsP2 } from "./optionsP2.js";
+import { showOptionsP4, hideOptionsP4 } from "./optionsP4.js";
+import { showWeaponsOptions, hideWeaponOptions } from "./weaponOptions.js";
 
 let player_name = "";
 let items = new Set();
@@ -141,19 +143,19 @@ const changeScene = (p) => {
   ) {
     p++;
   } else if (p == 8) {
-    op1 = "Investigate the sounds.";
-    op2 = "Go back to sleep";
+    let op1 = "Investigate the sounds.";
+    let op2 = "Go back to sleep";
     showOptionsP2(op1, op2);
     p++;
   } else if (p == 10) {
     hideCemetery();
     p++;
   } else if (p == 12) {
-    op1 = "Inspect the body.";
-    op2 = "Inspect the broken shovel.";
-    op3 = "Inspect the footprints.";
-    op4 = "Inspect the familiar piece of cloth.";
-    op5 = "Go back to the shed.";
+    let op1 = "Inspect the body.";
+    let op2 = "Inspect the broken shovel.";
+    let op3 = "Inspect the footprints.";
+    let op4 = "Inspect the familiar piece of cloth.";
+    let op5 = "Go back to the shed.";
     showOptionsP4(op1, op2, op3, op4, op5);
     p++;
   } else if (p == 13) {
@@ -210,46 +212,6 @@ const changeScene = (p) => {
   }
   console.log(`returning ${p}`);
   return p;
-};
-
-const showOptionsP4 = (option1, option2, option3, option4, option5) => {
-  $("#option1").text(option1);
-  $("#option2").text(option2);
-  $("#option3").text(option3);
-  $("#option4").text(option4);
-  $("#option5").text(option5);
-  $("#option1").removeClass("d-none");
-  $("#option2").removeClass("d-none");
-  $("#option3").removeClass("d-none");
-  $("#option4").removeClass("d-none");
-  $("#option5").removeClass("d-none");
-  $("#next_button").addClass("d-none");
-};
-
-const showWeaponsOptions = () => {
-  $("#option1").text("Take the bow and arrow.");
-  $("#option2").text("Take the boomerang.");
-  $("#option3").text("Take the spring gun.");
-  $("#option1").removeClass("d-none");
-  $("#option2").removeClass("d-none");
-  $("#option3").removeClass("d-none");
-  $("#next_button").addClass("d-none");
-};
-
-const hideWeaponOptions = () => {
-  $("#option1").addClass("d-none");
-  $("#option2").addClass("d-none");
-  $("#option3").addClass("d-none");
-  $("#next_button").removeClass("d-none");
-};
-
-const hideOptionsP4 = (option1, option2, option3, option4, option5) => {
-  $("#option1").addClass("d-none");
-  $("#option2").addClass("d-none");
-  $("#option3").addClass("d-none");
-  $("#option4").addClass("d-none");
-  $("#option5").addClass("d-none");
-  $("#next_button").removeClass("d-none");
 };
 
 const addShovel = () => {
