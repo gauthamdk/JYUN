@@ -3,6 +3,8 @@ import { playEerieSound, muteEerieSound } from "./eerieSound.js";
 import { showOptionsP2, hideOptionsP2 } from "./optionsP2.js";
 import { showOptionsP4, hideOptionsP4 } from "./optionsP4.js";
 import { showWeaponsOptions, hideWeaponOptions } from "./weaponOptions.js";
+import { addShovel, addFamiliarCloth } from "./items.js";
+import { showSlide, hideSlide } from "./slideshow.js";
 
 let player_name = "";
 let items = new Set();
@@ -212,26 +214,6 @@ const changeScene = (p) => {
   }
   console.log(`returning ${p}`);
   return p;
-};
-
-const addShovel = () => {
-  $("#broken_shovel").removeClass("d-none");
-};
-
-const addFamiliarCloth = () => {
-  $("#familiar_cloth").removeClass("d-none");
-};
-
-const showSlide = (image, text) => {
-  $("#charpd").attr("src", image);
-  $("#charpd").removeClass("d-none");
-  $("#gameplay_text").html(text);
-  $("#gameplay_text").removeClass("d-none");
-};
-
-const hideSlide = () => {
-  $("#charpd").addClass("d-none");
-  $("#gameplay_text").addClass("d-none");
 };
 
 const showCemetery = (text) => {
