@@ -1,3 +1,5 @@
+import { showOptionsP2, hideOptionsP2 } from "./optionsP2.js";
+
 const showCemetery = (text) => {
   $("#cemetery").removeClass("d-none");
   $("#charpd").addClass("d-none");
