@@ -16,8 +16,14 @@ import { showWeapon } from "./weapon.js";
 
 let player_name = "";
 let items = new Set();
+let skipOne = new Set([
+  2, 3, 4, 5, 6, 7, 9, 9, 11, 14, 15, 16, 17, 18, 21, 22, 26, 29, 33, 35, 36,
+  37, 39, 40, 41, 42, 44, 47, 48, 51, 53, 54, 55, 59, 61, 62, 63, 64, 65, 94,
+  95, 96, 97, 98, 99, 100, 101,
+]);
 
-let p = 0;
+let p = 0; // keep track of scenes
+// let p = 90;
 let k = 0; // keep track of number of items interacted with
 console.log("k = ", k);
 
@@ -75,6 +81,10 @@ $("#option1").click((e) => {
   } else if (p == 58) {
     p = changeScene(p);
     gameScene(p);
+  } else if (p == 91 || p == 93) {
+    // chase after her
+    p = changeScene(p);
+    gameScene(p);
   }
 });
 
@@ -111,6 +121,14 @@ $("#option2").click((e) => {
     gameScene(p);
   } else if (p == 57) {
     p = 60;
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 91) {
+    // Stay
+    p = 92;
+    p = changeScene(p);
+  } else if (p == 93) {
+    // Chase reluctantly
     p = changeScene(p);
     gameScene(p);
   }
@@ -159,46 +177,9 @@ const changeScene = (p) => {
   } else if (p == 1 || p == 66) {
     muteDiggingSound();
     p++;
-  } else if (
-    p == 2 ||
-    p == 3 ||
-    p == 4 ||
-    p == 5 ||
-    p == 6 ||
-    p == 7 ||
-    p == 9 ||
-    p == 11 ||
-    p == 14 ||
-    p == 15 ||
-    p == 16 ||
-    p == 17 ||
-    p == 18 ||
-    p == 21 ||
-    p == 22 ||
-    p == 26 ||
-    p == 29 ||
-    p == 33 ||
-    p == 35 ||
-    p == 36 ||
-    p == 37 ||
-    p == 39 ||
-    p == 40 ||
-    p == 41 ||
-    p == 42 ||
-    p == 44 ||
-    p == 47 ||
-    p == 48 ||
-    p == 51 ||
-    p == 53 ||
-    p == 54 ||
-    p == 55 ||
-    p == 59 ||
-    p == 61 ||
-    p == 62 ||
-    p == 63 ||
-    p == 64 ||
-    p == 65
-  ) {
+  } else if (p == 2) {
+    p = 90;
+  } else if (skipOne.has(p)) {
     p++;
   } else if (p == 8) {
     let op1 = "Investigate the sounds.";
@@ -321,6 +302,21 @@ const changeScene = (p) => {
     p++;
   } else if (p == 60) {
     hideOptionsP2();
+    p++;
+  } else if (p == 90) {
+    let op1 = "Chase after her.";
+    let op2 = "Stay.";
+    showOptionsP2(op1, op2);
+    p++;
+  } else if (p == 91 || p == 93) {
+    // chase after her
+    hideOptionsP2();
+    p = 94;
+  } else if (p == 92) {
+    // stay
+    let op1 = "Chase after her.";
+    let op2 = "Chase reluctantly after her.";
+    showOptionsP2(op1, op2);
     p++;
   }
   console.log(`returning ${p}`);
@@ -526,6 +522,31 @@ const gameScene = (p) => {
     playDiggingSound();
   } else if (p == 67) {
     showSlide("", "...");
+  } else if (p == 90) {
+    showSlide("assets/player/CharPD_04.png", "What the hell?!");
+  } else if (p == 91) {
+    hideSlide();
+  } else if (p == 94) {
+    // Chase after her
+    showSlide("assets/player/CharPD_04.png", "Come back!");
+  } else if (p == 95) {
+    showSlide("assets/player/CharPD_04.png", "Hey!");
+  } else if (p == 96) {
+    showSlide("assets/player/CharPD_04.png", "Who the hell are you?");
+  } else if (p == 97) {
+    showSlide("assets/player/CharPD_04.png", "Why the hell are you digging?");
+  } else if (p == 98) {
+    showSlide("", "The night thickens with questions.");
+  } else if (p == 99) {
+    showSlide("", "You turn a corner in this endless cemetery.");
+  } else if (p == 100) {
+    showSlide("", "And in front a large mausoleum, she stands.");
+  } else if (p == 101) {
+    showSlide("", "There is an overwhelming feeling of recognition.");
+  } else if (p == 102) {
+    showSlide("", "You <u>know</u> her.");
+  } else if (p == 103) {
+    showSlide("", "You pull out the photograph you took of her footprints.");
   }
 };
 
