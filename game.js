@@ -426,7 +426,7 @@ const gameScene = (p) => {
     hideSlide();
     playEerieSound();
   } else if (p == 35) {
-    showSlide("assets/player/CharPD_01.png", "What the hell was that?");
+    showSlide("assets/player/CharPD_02.png", "What the hell was that?");
   } else if (p == 36) {
     showSlide("assets/player/CharPD_02.png", "...");
   } else if (p == 37) {
