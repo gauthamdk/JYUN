@@ -23,5 +23,5 @@ circleText.innerHTML = text;
 
 const element = document.querySelectorAll("span");
 for (let i = 0; i < element.length; i++) {
-  element[i].style.transform = "rotate(" + i * 4 + "deg)";
+  element[i].style.transform = "rotate(" + i * 3.5 + "deg)";
 }
