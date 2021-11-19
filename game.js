@@ -19,7 +19,9 @@ let items = new Set();
 let skipOne = new Set([
   2, 3, 4, 5, 6, 7, 9, 9, 11, 14, 15, 16, 17, 18, 21, 22, 26, 29, 33, 35, 36,
   37, 39, 40, 41, 42, 44, 47, 48, 51, 53, 54, 55, 59, 61, 62, 63, 64, 65, 94,
-  95, 96, 97, 98, 99, 100, 101, 103,
+  95, 96, 97, 98, 99, 100, 101, 103, 106, 107, 108, 109, 110, 111, 112, 113,
+  114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128,
+  129,
 ]);
 
 let p = 0; // keep track of scenes
@@ -83,6 +85,10 @@ $("#option1").click((e) => {
     gameScene(p);
   } else if (p == 91 || p == 93) {
     // chase after her
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 105) {
+    // speak to her
     p = changeScene(p);
     gameScene(p);
   }
@@ -164,6 +170,7 @@ $("#option5").click((e) => {
   }
 });
 
+let pullOut = "";
 const changeScene = (p) => {
   if (p == 0) {
     player_name = $("#username_textbox")[0].value;
@@ -320,6 +327,13 @@ const changeScene = (p) => {
     p++;
   } else if (p == 102) {
     if (items.has("Photograph")) {
+      pullOut = "You pull out the photograph you took of her footprints.";
+      p++;
+    } else if (items.has("BloodSample")) {
+      pullOut = "You pull out the blood sample you took of her.";
+      p++;
+    } else if (items.has("FamiliarCloth")) {
+      pullOut = "You pull out the familiar piece of cloth.";
       p++;
     } else {
       p = changeScene(104);
@@ -328,6 +342,9 @@ const changeScene = (p) => {
     let op1 = "Speak to her.";
     let op2 = "Attack.";
     showOptionsP2(op1, op2);
+    p++;
+  } else if (p == 105) {
+    hideOptionsP2();
     p++;
   }
   console.log(`returning ${p}`);
@@ -557,11 +574,76 @@ const gameScene = (p) => {
   } else if (p == 102) {
     showSlide("", "You <u>know</u> her.");
   } else if (p == 103) {
-    showSlide("", "You pull out the photograph you took of her footprints.");
+    showSlide("", pullOut);
   } else if (p == 104) {
     showSlide("", "It stares back at you mockingly.");
   } else if (p == 105) {
     hideSlide();
+  } else if (p == 106) {
+    showSlide("assets/player/CharPD_04.png", "Stop running.");
+  } else if (p == 107) {
+    showSlide("assets/player/CharND_02.png", "...");
+  } else if (p == 108) {
+    showSlide("assets/player/CharPD_04.png", "Explain yourself.");
+  } else if (p == 109) {
+    showSlide("assets/player/CharND_02.png", "The circle.");
+  } else if (p == 110) {
+    showSlide("assets/player/CharPD_04.png", "...");
+  } else if (p == 111) {
+    showSlide("assets/player/CharPD_04.png", "What");
+  } else if (p == 112) {
+    showSlide("assets/player/CharND_02.png", "I must fulfill the circle");
+  } else if (p == 113) {
+    showSlide(
+      "assets/player/CharND_02.png",
+      "In order to do so, I must find the body."
+    );
+  } else if (p == 114) {
+    showSlide(
+      "assets/player/CharND_02.png",
+      "I do not expect you to understand."
+    );
+  } else if (p == 115) {
+    showSlide("assets/player/CharPD_04.png", "Who are you?");
+  } else if (p == 116) {
+    showSlide("assets/player/CharND_02.png", "Nihl.");
+  } else if (p == 117) {
+    showSlide(
+      "assets/player/CharPD_04.png",
+      "I didn't ask for your name. I asked who you were."
+    );
+  } else if (p == 118) {
+    showSlide("assets/player/CharND_02.png", "...");
+  } else if (p == 119) {
+    showSlide("", "She inches forward.");
+  } else if (p == 120) {
+    showSlide("assets/player/CharND_02.png", "You are " + player_name + ".");
+  } else if (p == 121) {
+    showSlide("assets/player/CharND_02.png", "Yes?");
+  } else if (p == 122) {
+    showSlide("assets/player/CharPD_04.png", "...");
+  } else if (p == 123) {
+    showSlide("assets/player/CharPD_04.png", ".......");
+  } else if (p == 124) {
+    showSlide("assets/player/CharPD_04.png", "You're joking");
+  } else if (p == 125) {
+    showSlide("assets/player/CharPD_04.png", "I'm calling the cops.");
+  } else if (p == 126) {
+    showSlide("assets/player/CharND_02.png", "You cannot be here for long.");
+  } else if (p == 127) {
+    showSlide(
+      "assets/player/CharPD_04.png",
+      "...what are you <u>talking</u> about?"
+    );
+  } else if (p == 128) {
+    showSlide("assets/player/CharND_02.png", "You will transition.");
+  } else if (p == 129) {
+    showSlide("assets/player/CharND_02.png", "...");
+  } else if (p == 130) {
+    showSlide(
+      "assets/player/CharND_02.png",
+      "Your time is up. May I resume digging?"
+    );
   }
 };
 
