@@ -456,10 +456,7 @@ const changeScene = (p) => {
     p++;
   } else if (p == 140) {
     //reset game variables()
-    items = new Set();
-    player_name = "";
-    k = 0;
-    resetGame(items, player_name, count);
+    resetGame(items, player_name, k);
     window.location.href = "/index.html";
   } else if (p == 141) {
     hideOptionsP2();
@@ -484,6 +481,7 @@ const changeScene = (p) => {
     p++;
   } else if (p == 150) {
     //reset game variables
+    resetGame(items, player_name, k);
     hideSlide();
     p = 1;
   } else if (p == 151) {
@@ -506,6 +504,12 @@ const changeScene = (p) => {
 };
 
 const showJYUN = () => {};
+
+const resetGame = (items, player_name, k) => {
+  items = new Set();
+  player_name = "";
+  k = 0;
+};
 
 const gameScene = (p) => {
   console.log(p);
