@@ -15,13 +15,13 @@ import { showCemetery, hideCemetery } from "./cemetery.js";
 import { showWeapon } from "./weapon.js";
 
 let player_name = "";
-let items = new Set();
+let items = new Set(["checkCamera"]);
 let skipOne = new Set([
   2, 3, 4, 5, 6, 7, 9, 9, 11, 14, 15, 16, 17, 18, 21, 22, 26, 29, 33, 35, 36,
   37, 39, 40, 41, 42, 44, 47, 48, 51, 53, 54, 55, 59, 61, 62, 63, 64, 65, 94,
   95, 96, 97, 98, 99, 100, 101, 103, 106, 107, 108, 109, 110, 111, 112, 113,
   114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128,
-  129,
+  129, 132,
 ]);
 
 let p = 0; // keep track of scenes
@@ -91,6 +91,14 @@ $("#option1").click((e) => {
     // speak to her
     p = changeScene(p);
     gameScene(p);
+  } else if (p == 131) {
+    // continue digging
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 134 || p == 135 || p == 136) {
+    // examine photograph first time
+    p = changeScene(p);
+    gameScene(p);
   }
 });
 
@@ -135,6 +143,10 @@ $("#option2").click((e) => {
     p = changeScene(p);
   } else if (p == 93) {
     // Chase reluctantly
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 105) {
+    // attack her
     p = changeScene(p);
     gameScene(p);
   }
@@ -185,7 +197,7 @@ const changeScene = (p) => {
     muteDiggingSound();
     p++;
   } else if (p == 2) {
-    p = 90;
+    p = 130;
   } else if (skipOne.has(p)) {
     p++;
   } else if (p == 8) {
@@ -345,6 +357,36 @@ const changeScene = (p) => {
     p++;
   } else if (p == 105) {
     hideOptionsP2();
+    p++;
+  } else if (p == 130) {
+    // digging options
+    let op1 = "Allow her to continue digging.";
+    let op2 = "No.";
+    showOptionsP2(op1, op2);
+    p++;
+  } else if (p == 131) {
+    hideOptionsP2();
+    p++;
+  } else if (p == 133) {
+    if (items.has("investigatePhoto")) {
+      let op1 = "Examine the photograph you picked up.";
+      showOptionsP1(op1);
+      p++;
+    } else if (items.has("checkCamera")) {
+      p = 136;
+      changeScene(p);
+    }
+  } else if (p == 134) {
+    let op1 = "Exainea het hotpo ouy ckeipd pu.";
+    showOptionsP1(op1);
+    p++;
+  } else if (p == 135) {
+    let op1 = "Exainea het hotpo ouy ckeipd pu. more glitch";
+    showOptionsP1(op1);
+    p++;
+  } else if (p == 136) {
+    let op1 = "Ask about the photograph you saw.";
+    showOptionsP1(op1);
     p++;
   }
   console.log(`returning ${p}`);
@@ -644,6 +686,17 @@ const gameScene = (p) => {
       "assets/player/CharND_02.png",
       "Your time is up. May I resume digging?"
     );
+  } else if (p == 131) {
+    hideSlide();
+  } else if (p == 132) {
+    showSlide(
+      "assets/player/CharPD_04.png",
+      "I don't even know what it is that you are looking for."
+    );
+  } else if (p == 133) {
+    showSlide("assets/player/CharND_03.png", "The next in the circle.");
+  } else if (p == 134 || p == 135 || p == 136) {
+    hideSlide();
   }
 };
 
