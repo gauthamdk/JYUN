@@ -238,7 +238,7 @@ const changeScene = (p) => {
     muteDiggingSound();
     p++;
   } else if (p == 3) {
-    p = 95;
+    p = 90;
   } else if (skipOne.has(p)) {
     p++;
   } else if (p == 8) {
