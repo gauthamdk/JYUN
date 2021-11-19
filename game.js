@@ -21,7 +21,7 @@ let skipOne = new Set([
   37, 39, 40, 41, 42, 44, 47, 48, 51, 53, 54, 55, 59, 61, 62, 63, 64, 65, 94,
   95, 96, 97, 98, 99, 100, 101, 103, 106, 107, 108, 109, 110, 111, 112, 113,
   114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128,
-  129, 132,
+  129, 132, 142,
 ]);
 
 let p = 0; // keep track of scenes
@@ -92,7 +92,7 @@ $("#option1").click((e) => {
     p = changeScene(p);
     gameScene(p);
   } else if (p == 131) {
-    // continue digging
+    // allow digging
     p = changeScene(p);
     gameScene(p);
   } else if (p == 134 || p == 135 || p == 136) {
@@ -100,6 +100,14 @@ $("#option1").click((e) => {
     if (p == 136) {
       p = 137;
     }
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 144) {
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 146) {
+    hideOptionsP4();
+    p = 131;
     p = changeScene(p);
     gameScene(p);
   }
@@ -156,6 +164,16 @@ $("#option2").click((e) => {
     //ask about body
     p = changeScene(p);
     gameScene(p);
+  } else if (p == 131) {
+    //deny digging
+    p = 141;
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 146) {
+    hideOptionsP4();
+    p = 131;
+    p = changeScene(p);
+    gameScene(p);
   }
 });
 
@@ -170,6 +188,11 @@ $("#option3").click((e) => {
     showWeapon("springgun");
     p = changeScene(p);
     gameScene(p);
+  } else if (p == 146) {
+    hideOptionsP4();
+    p = 131;
+    p = changeScene(p);
+    gameScene(p);
   }
 });
 
@@ -179,12 +202,22 @@ $("#option4").click((e) => {
     console.log("k = ", k);
     p = changeScene(28);
     gameScene(p);
+  } else if (p == 146) {
+    hideOptionsP4();
+    p = 131;
+    p = changeScene(p);
+    gameScene(p);
   }
 });
 
 $("#option5").click((e) => {
   if (p == 13) {
     p = changeScene(32);
+    gameScene(p);
+  } else if (p == 146) {
+    hideOptionsP4();
+    p = 131;
+    p = changeScene(p);
     gameScene(p);
   }
 });
@@ -409,6 +442,24 @@ const changeScene = (p) => {
   } else if (p == 140) {
     //reset game variables()
     window.location.href = "/index.html";
+  } else if (p == 141) {
+    hideOptionsP2();
+    p++;
+  } else if (p == 143) {
+    let op1 = "Glitched stuff";
+    showOptionsP1(op1);
+    p++;
+  } else if (p == 144) {
+    hideOptionsP1();
+    p++;
+  } else if (p == 145) {
+    let op1 = "Allow her to keep digging.";
+    let op2 = "Let her continue to dig.";
+    let op3 = "Dig.";
+    let op4 = "She's digging.";
+    let op5 = "Your time is up. May I resume digging?";
+    showOptionsP4(op1, op2, op3, op4, op5);
+    p++;
   }
 
   console.log(`returning ${p}`);
@@ -731,6 +782,19 @@ const gameScene = (p) => {
       "assets/player/charPD_04.png",
       "Just, you know, a body. I'm just -"
     );
+  } else if (p == 142) {
+    showSlide(
+      "assets/player/CharPD_04.png",
+      "No, hey. This digging thing, all of this, this is too weird. You gotta go."
+    );
+  } else if (p == 143) {
+    showSlide("assets/player/CharPD_04.png", "I can't -");
+  } else if (p == 144) {
+    hideSlide();
+  } else if (p == 145) {
+    showSlide("", "");
+  } else if (p == 146) {
+    hideSlide();
   }
 };
 
