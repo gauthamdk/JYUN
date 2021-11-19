@@ -495,8 +495,10 @@ const changeScene = (p) => {
     hideOptionsP1();
     p++;
   } else if (p == 180) {
-    changeBackgroundColor("grey");
+    changeBackgroundColor("#767575");
     p++;
+  } else if (p == 213) {
+    window.location.href = "/index.html";
   }
 
   console.log(`returning ${p}`);
@@ -977,6 +979,8 @@ const gameScene = (p) => {
     showSlide("", "she seems agelesss");
   } else if (p == 212) {
     showSlide("", "");
+  } else if (p == 213) {
+    showSlide("", "JYUN");
   }
 };
 
