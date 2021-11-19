@@ -21,7 +21,7 @@ let skipOne = new Set([
   37, 39, 40, 41, 42, 44, 47, 48, 51, 53, 54, 55, 59, 61, 62, 63, 64, 65, 94,
   95, 96, 97, 98, 99, 100, 101, 103, 106, 107, 108, 109, 110, 111, 112, 113,
   114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128,
-  129, 132, 142,
+  129, 132, 142, 148, 149,
 ]);
 
 let p = 0; // keep track of scenes
@@ -156,10 +156,6 @@ $("#option2").click((e) => {
     // Chase reluctantly
     p = changeScene(p);
     gameScene(p);
-  } else if (p == 105) {
-    // attack her
-    p = changeScene(p);
-    gameScene(p);
   } else if (p == 139) {
     //ask about body
     p = changeScene(p);
@@ -172,6 +168,11 @@ $("#option2").click((e) => {
   } else if (p == 146) {
     hideOptionsP4();
     p = 131;
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 105) {
+    // attack her
+    p = 147;
     p = changeScene(p);
     gameScene(p);
   }
@@ -236,8 +237,8 @@ const changeScene = (p) => {
   } else if (p == 1 || p == 66) {
     muteDiggingSound();
     p++;
-  } else if (p == 2) {
-    p = 130;
+  } else if (p == 3) {
+    p = 95;
   } else if (skipOne.has(p)) {
     p++;
   } else if (p == 8) {
@@ -460,6 +461,13 @@ const changeScene = (p) => {
     let op5 = "Your time is up. May I resume digging?";
     showOptionsP4(op1, op2, op3, op4, op5);
     p++;
+  } else if (p == 147) {
+    hideOptionsP2();
+    p++;
+  } else if (p == 150) {
+    //reset game variables
+    hideSlide();
+    p = 1;
   }
 
   console.log(`returning ${p}`);
@@ -795,6 +803,15 @@ const gameScene = (p) => {
     showSlide("", "");
   } else if (p == 146) {
     hideSlide();
+  } else if (p == 148) {
+    showSlide("assets/player/CharPD_04.png", "You creep.");
+  } else if (p == 149) {
+    showSlide("", "You fire your projectile at her.");
+  } else if (p == 150) {
+    showSlide(
+      "",
+      "She dodges it with ease, and lunges at you, pushing you into a nearby grave."
+    );
   }
 };
 
