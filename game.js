@@ -96,7 +96,10 @@ $("#option1").click((e) => {
     p = changeScene(p);
     gameScene(p);
   } else if (p == 134 || p == 135 || p == 136) {
-    // examine photograph first time
+    // examine and ask about photograph
+    if (p == 136) {
+      p = 137;
+    }
     p = changeScene(p);
     gameScene(p);
   }
@@ -147,6 +150,10 @@ $("#option2").click((e) => {
     gameScene(p);
   } else if (p == 105) {
     // attack her
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 139) {
+    //ask about body
     p = changeScene(p);
     gameScene(p);
   }
@@ -388,7 +395,22 @@ const changeScene = (p) => {
     let op1 = "Ask about the photograph you saw.";
     showOptionsP1(op1);
     p++;
+  } else if (p == 137) {
+    hideOptionsP1();
+    p++;
+  } else if (p == 138) {
+    let op1 = "Nothing!";
+    let op2 = "Was it of a body?";
+    showOptionsP2(op1, op2);
+    p++;
+  } else if (p == 139) {
+    hideOptionsP2();
+    p++;
+  } else if (p == 140) {
+    //reset game variables()
+    window.location.href = "/index.html";
   }
+
   console.log(`returning ${p}`);
   return p;
 };
@@ -697,6 +719,18 @@ const gameScene = (p) => {
     showSlide("assets/player/CharND_03.png", "The next in the circle.");
   } else if (p == 134 || p == 135 || p == 136) {
     hideSlide();
+  } else if (p == 138) {
+    showSlide(
+      "assets/player/CharPD_04.png",
+      "You have somebody specific in mind, correct? I saw the photograph - "
+    );
+  } else if (p == 139) {
+    showSlide("assets/player/CharND_03.png", "WHAT DID YOU SEE?");
+  } else if (p == 140) {
+    showSlide(
+      "assets/player/charPD_04.png",
+      "Just, you know, a body. I'm just -"
+    );
   }
 };
 
