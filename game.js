@@ -787,7 +787,7 @@ const gameScene = (p) => {
     showSlide("assets/player/CharND_03.png", "WHAT DID YOU SEE?");
   } else if (p == 140) {
     showSlide(
-      "assets/player/charPD_04.png",
+      "assets/player/CharPD_04.png",
       "Just, you know, a body. I'm just -"
     );
   } else if (p == 142) {
