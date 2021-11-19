@@ -19,7 +19,7 @@ let items = new Set();
 let skipOne = new Set([
   2, 3, 4, 5, 6, 7, 9, 9, 11, 14, 15, 16, 17, 18, 21, 22, 26, 29, 33, 35, 36,
   37, 39, 40, 41, 42, 44, 47, 48, 51, 53, 54, 55, 59, 61, 62, 63, 64, 65, 94,
-  95, 96, 97, 98, 99, 100, 101,
+  95, 96, 97, 98, 99, 100, 101, 103,
 ]);
 
 let p = 0; // keep track of scenes
@@ -318,6 +318,17 @@ const changeScene = (p) => {
     let op2 = "Chase reluctantly after her.";
     showOptionsP2(op1, op2);
     p++;
+  } else if (p == 102) {
+    if (items.has("Photograph")) {
+      p++;
+    } else {
+      p = changeScene(104);
+    }
+  } else if (p == 104) {
+    let op1 = "Speak to her.";
+    let op2 = "Attack.";
+    showOptionsP2(op1, op2);
+    p++;
   }
   console.log(`returning ${p}`);
   return p;
@@ -547,6 +558,10 @@ const gameScene = (p) => {
     showSlide("", "You <u>know</u> her.");
   } else if (p == 103) {
     showSlide("", "You pull out the photograph you took of her footprints.");
+  } else if (p == 104) {
+    showSlide("", "It stares back at you mockingly.");
+  } else if (p == 105) {
+    hideSlide();
   }
 };
 
