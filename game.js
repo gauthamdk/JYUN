@@ -13,6 +13,7 @@ import {
 import { showSlide, hideSlide } from "./slideshow.js";
 import { showCemetery, hideCemetery } from "./cemetery.js";
 import { showWeapon } from "./weapon.js";
+import { changeBackgroundColor } from "./changeBgColor.js";
 
 let player_name = "";
 let items = new Set(["checkCamera"]);
@@ -21,7 +22,11 @@ let skipOne = new Set([
   37, 39, 40, 41, 42, 44, 47, 48, 51, 53, 54, 55, 59, 61, 62, 63, 64, 65, 94,
   95, 96, 97, 98, 99, 100, 101, 103, 106, 107, 108, 109, 110, 111, 112, 113,
   114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128,
-  129, 132, 142, 148, 149,
+  129, 132, 142, 148, 149, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161,
+  162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176,
+  179, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194,
+  195, 196, 197, 198, 199, 200, 201, 202, 203, 203, 204, 205, 206, 207, 208,
+  209, 210, 211,
 ]);
 
 let p = 0; // keep track of scenes
@@ -108,6 +113,15 @@ $("#option1").click((e) => {
   } else if (p == 146) {
     hideOptionsP4();
     p = 131;
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 139) {
+    // Saw nothing, go to funeral
+    p = 151;
+    p = changeScene(p);
+    gameScene(p);
+  } else if (p == 178) {
+    // the wait is over
     p = changeScene(p);
     gameScene(p);
   }
@@ -238,7 +252,7 @@ const changeScene = (p) => {
     muteDiggingSound();
     p++;
   } else if (p == 3) {
-    p = 90;
+    p = 178;
   } else if (skipOne.has(p)) {
     p++;
   } else if (p == 8) {
@@ -442,6 +456,10 @@ const changeScene = (p) => {
     p++;
   } else if (p == 140) {
     //reset game variables()
+    items = new Set();
+    player_name = "";
+    k = 0;
+    resetGame(items, player_name, count);
     window.location.href = "/index.html";
   } else if (p == 141) {
     hideOptionsP2();
@@ -468,11 +486,26 @@ const changeScene = (p) => {
     //reset game variables
     hideSlide();
     p = 1;
+  } else if (p == 151) {
+    hideOptionsP2();
+    p++;
+  } else if (p == 177) {
+    let op1 = "The wait is over," + player_name;
+    showOptionsP1(op1);
+    p++;
+  } else if (p == 178) {
+    hideOptionsP1();
+    p++;
+  } else if (p == 180) {
+    changeBackgroundColor("grey");
+    p++;
   }
 
   console.log(`returning ${p}`);
   return p;
 };
+
+const showJYUN = () => {};
 
 const gameScene = (p) => {
   console.log(p);
@@ -812,6 +845,134 @@ const gameScene = (p) => {
       "",
       "She dodges it with ease, and lunges at you, pushing you into a nearby grave."
     );
+  } else if (p == 152) {
+    showSlide("assets/player/CharPD_04.png", "No, nothing. Keep going.");
+  } else if (p == 153) {
+    showSlide("assets/player/CharND_03.png", "...");
+  } else if (p == 154) {
+    showSlide("assets/player/CharND_03.png", "This is not the one.");
+  } else if (p == 155) {
+    showSlide("assets/player/CharND_03.png", "...");
+  } else if (p == 156) {
+    showSlide("assets/player/CharND_03.png", "Perhaps this?");
+  } else if (p == 157) {
+    showSlide("assets/player/CharND_03.png", "...");
+  } else if (p == 158) {
+    showSlide("assets/player/CharND_03.png", "Ah, yes.");
+  } else if (p == 159) {
+    showSlide("assets/player/CharND_03.png", "Come here.");
+  } else if (p == 160) {
+    showSlide("assets/player/CharPD_04.png", "...okay.");
+  } else if (p == 161) {
+    showSlide("assets/player/CharND_03.png", "Take a look.");
+  } else if (p == 162) {
+    showSlide("", "You look down. The body seems ageless.");
+  } else if (p == 163) {
+    showSlide("", "Yet her body seems...");
+  } else if (p == 164) {
+    showSlide("", "You lean in.");
+  } else if (p == 165) {
+    showSlide("", "Closer.");
+  } else if (p == 166) {
+    showSlide("", "Closer still.");
+  } else if (p == 167) {
+    showSlide("", "Is this body...");
+  } else if (p == 168) {
+    showSlide("", "...you?");
+  } else if (p == 169) {
+    showSlide("", "But it doesn't look like you.");
+  } else if (p == 170) {
+    showSlide("", "But you <u>know</u> this body.");
+  } else if (p == 171) {
+    showSlide("", "The same way you know your own body.");
+  } else if (p == 172) {
+    showSlide(
+      "",
+      "You feel the scratch on your skin from the linen on her body."
+    );
+  } else if (p == 173) {
+    showSlide(
+      "",
+      "Your back moistens as she sinks deeper still into the soil."
+    );
+  } else if (p == 174) {
+    showSlide("", "There has always been only one body.");
+  } else if (p == 175) {
+    showSlide("", "This body has always been you.");
+  } else if (p == 176) {
+    showSlide("", "And it will never not be.");
+  } else if (p == 177) {
+    showSlide("assets/player/CharND_03.png", "Ready?");
+  } else if (p == 178) {
+    showSlide("assets/player/CharPD_06.png", "Wait!");
+  } else if (p == 179) {
+    showSlide("", "Nihl pushes you in.");
+  } else if (p == 180) {
+    showSlide("", "");
+  } else if (p == 181) {
+    showSlide("", "...");
+  } else if (p == 182) {
+    showSlide("", "...");
+  } else if (p == 183) {
+    showSlide("", "warm");
+  } else if (p == 184) {
+    showSlide("", "...");
+  } else if (p == 185) {
+    showSlide("", "whoa");
+  } else if (p == 186) {
+    showSlide("", "big faces looking at me");
+  } else if (p == 187) {
+    showSlide("", "who this big faces");
+  } else if (p == 188) {
+    showSlide("", "they cry");
+  } else if (p == 189) {
+    showSlide("", "everything gray gray");
+  } else if (p == 190) {
+    showSlide("", "is fire smoke");
+  } else if (p == 191) {
+    showSlide("", "from sticks");
+  } else if (p == 192) {
+    showSlide("", "two more big face");
+  } else if (p == 193) {
+    showSlide("", "they hit ground");
+  } else if (p == 194) {
+    showSlide("", "ground has hole");
+  } else if (p == 195) {
+    showSlide("", "hole has face");
+  } else if (p == 196) {
+    showSlide("", "above hole is rock");
+  } else if (p == 197) {
+    showSlide("", "rock has words");
+  } else if (p == 198) {
+    showSlide("", "cannot see");
+  } else if (p == 199) {
+    showSlide("", "...he...");
+  } else if (p == 200) {
+    showSlide("", "...here...");
+  } else if (p == 201) {
+    showSlide("", "...le...");
+  } else if (p == 202) {
+    showSlide("", "...lies...");
+  } else if (p == 203) {
+    showSlide("", "...");
+  } else if (p == 204) {
+    showSlide("", "...");
+  } else if (p == 205) {
+    showSlide("", "..." + player_name);
+  } else if (p == 206) {
+    showSlide("", "oh big face");
+  } else if (p == 207) {
+    showSlide("", "big nice face");
+  } else if (p == 208) {
+    showSlide("", '"i\'m sorry for your loss"');
+  } else if (p == 209) {
+    showSlide("", '"please avert your eyes as we say a prayer"');
+  } else if (p == 210) {
+    showSlide("", "who this voice");
+  } else if (p == 211) {
+    showSlide("", "she seems agelesss");
+  } else if (p == 212) {
+    showSlide("", "");
   }
 };
 
