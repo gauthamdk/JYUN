@@ -5,6 +5,7 @@ const showWeaponsOptions = () => {
   $("#option1").removeClass("d-none");
   $("#option2").removeClass("d-none");
   $("#option3").removeClass("d-none");
+
   $("#next_button").addClass("d-none");
 };
 

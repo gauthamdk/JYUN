@@ -4,6 +4,8 @@ var pos = 0;
 var nextText = "";
 var speed = 50;
 
+var delay =0;
+
 function typeWriter(){
   var subs1 ="";
   var subs2= "";
@@ -27,12 +29,19 @@ function typeWriter(){
     document.getElementById("gameplay_text").innerHTML += nextText.charAt(i);
     i++;
     setTimeout(typeWriter, speed);
-    
   }
+  return speed * nextText.length;
+
 }
 //=============================
+//============================
+// function showButton() {
+//   $("#next_button").removeClass("d-none");
+// }
+//============================
 
 const showSlide = (image, text) => {
+  // $("#next_button").addClass("d-none");
   i=0;
   nextText = text;
   document.getElementById("gameplay_text").innerHTML = "";
@@ -40,12 +49,15 @@ const showSlide = (image, text) => {
   $("#charpd").removeClass("d-none");
   // $("#gameplay_text").html(text);
   $("#gameplay_text").removeClass("d-none");
-  typeWriter();
+  delay = typeWriter();
+  // delay = delay + 200;
+  // setTimeout(showButton,delay);
 };
 
 const hideSlide = () => {
+  // $("#next_button").addClass("d-none");
   $("#charpd").addClass("d-none");
   $("#gameplay_text").addClass("d-none");
 };
 
-export { showSlide, hideSlide };
+export { showSlide, hideSlide, delay};

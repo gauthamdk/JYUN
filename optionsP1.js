@@ -1,7 +1,7 @@
 const showOptionsP1 = (option1) => {
   $("#option1").text(option1);
-  $("#option1").removeClass("d-none");
   $("#next_button").addClass("d-none");
+  $("#option1").removeClass("d-none");
 };
 
 const hideOptionsP1 = () => {
