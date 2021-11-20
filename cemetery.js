@@ -1,54 +1,76 @@
 import { showOptionsP2, hideOptionsP2 } from "./optionsP2.js";
 
 //for typing effect ============
-var i = 0;
-var pos = 0;
-var nextText = "";
+var i2 = 0;
+var pos2 = 0;
+var nextText2 = "";
 var speed = 50;
+
+var delay2 = 0;
 
 function typeWriter(){
   var subs1 ="";
   var subs2= "";
-  if (i < nextText.length) {
-    if(nextText.charAt(i) == "<")
+  if (i2 < nextText2.length) {
+    if(nextText2.charAt(i2) == "<")
     {
-      if(nextText.charAt(i+1)== "u"){
-        i+=3;
-        pos = i;
+      if(nextText2.charAt(i2+1)== "u"){
+        i2+=3;
+        pos2 = i;
       }
-      else if(nextText.charAt(i+1)== "/"){
-        subs1 = nextText.substring(pos,i);
+      else if(nextText2.charAt(i2+1)== "/"){
+        subs1 = nextText2.substring(pos2,i2);
         // console.log("subs1= ",subs1);
-        i+=4;
+        i2+=4;
         subs2 = "<u>" + subs1 + "</u>";
         // console.log("subs2= ",subs2);
         document.getElementById("gameplay_text").innerHTML = 
         document.getElementById("gameplay_text").innerHTML.replace(subs1,subs2);
       }
     }
-    document.getElementById("gameplay_text").innerHTML += nextText.charAt(i);
-    i++;
+    document.getElementById("gameplay_text").innerHTML += nextText2.charAt(i2);
+    i2++;
     setTimeout(typeWriter, speed);
-    
   }
+  return speed * nextText2.length;
 }
+//=============================
+//=============================
+// function showButton() {
+//   $("#next_button").removeClass("d-none");
+// }
 //=============================
 
 const showCemetery = (text) => {
-  i = 0;
-  nextText = text;
+  // $("#next_button").addClass("d-none");
+  i2 = 0;
+  nextText2 = text;
   document.getElementById("gameplay_text").innerHTML = "";
   $("#cemetery").removeClass("d-none");
   $("#charpd").addClass("d-none");
   // $("#gameplay_text").html(text);
   $("#gameplay_text").removeClass("d-none");
-  typeWriter();
+  delay2 = typeWriter();
+  // delay2 = delay2 + 200;
+  // setTimeout(showButton,delay2);
   hideOptionsP2();
 };
 
 const hideCemetery = () => {
+  // $("#next_button").addClass("d-none");
   $("#cemetery").addClass("d-none");
   $("#charpd").removeClass("d-none");
 };
 
-export { showCemetery, hideCemetery };
+const showCemetery2 = (text) => {
+  $("#cem2").removeClass("d-none");
+  $("#next_button").addClass("d-none");
+};
+
+const hideCemetery2 = () => {
+  $("#cem2").addClass("d-none");
+  $("#next_button").removeClass("d-none");
+  document.getElementById("gameplay_text").innerHTML = "";
+};
+
+export { showCemetery, hideCemetery, showCemetery2, hideCemetery2, delay2};
