@@ -29,7 +29,7 @@ import {
 } from "./showGlitch.js";
 
 let player_name = "";
-let items = new Set();
+let items = new Set(["sawPhoto"]);
 let skipOne = new Set([
   2, 3, 4, 5, 6, 7, 9, 9, 11, 14, 15, 16, 17, 18, 21, 22, 26, 29, 33, 35, 36,
   37, 39, 40, 41, 42, 44, 47, 48, 51, 53, 54, 55, 59, 61, 62, 63, 64, 65, 69,
@@ -312,6 +312,8 @@ const changeScene = (p) => {
   } else if (p == 1 || p == 66) {
     muteDiggingSound();
     p++;
+  } else if (p == 3) {
+    p = 130;
   } else if (skipOne.has(p)) {
     p++;
   } else if (p == 8) {
@@ -492,20 +494,21 @@ const changeScene = (p) => {
     hideOptionsP2();
     p++;
   } else if (p == 133) {
-    if (items.has("investigatePhoto")) {
+    if (items.has("sawPhoto")) {
       let op1 = "Examine the photograph you picked up.";
       showOptionsP1(op1);
       p++;
-    } else if (items.has("checkCamera")) {
+    } else if (items.has("checkedCamera")) {
       p = 136;
       changeScene(p);
     }
   } else if (p == 134) {
-    let op1 = "Exainea het hotpo ouy ckeipd pu.";
+    let op1 =
+      "Examine the photog̵̙̖̾᷃̆᷄̆᷁ͣ̀︢r̴̡̡̜̬̻͎̰̲᷊̉͜a̴̜᷾̆ͬ︠̈̂̂ͣ᷄͢͠p̸̝̖̱͉̫᷿̭͖͈͑ͦ︠̽̏᷉͡h̵̳᷁̋́︡͒͊͂̋ y̸᷂̞᷂̖͕̣̙̺᷿̣ͫͬ︣̍̌᷆͌͞ȍ̷͎ͪ͂̑︣︠̈̕ũ̵̼͔̖̻̯̺̟᷉ͫ͜ p̵̺ͩ̐͑̓i̶̢͕̗͇̩᷀̄᷄͆̏c̵̗͕̟̯̳ͭͫ̀̈́ͪͥ̓̎k̴̢͔᷿̺̲͚̑̇̍ͮ͒ͥ͊︢͐̓e̸̡̝̠̪̭ͤͪͦ̑ͭ̈︣᷇͡ḋ̸̙̖̃̿ͭͯ̀͟ u̸͔̮̠̲̩̜͂ͧ͗̔︠͜͞͠p̶̤̘̗̠̟̯͉͌̔̀̍ͣ͂︠᷈̽͝.̸̨̙̻̖̙︢̌᷈̇͆︡͠";
     showOptionsP1(op1);
     p++;
   } else if (p == 135) {
-    let op1 = "Exainea het hotpo ouy ckeipd pu. more glitch";
+    let op1 = "D̵̺ͧ̾̑͋́̇ͫ̇̔͡O̸᷿̗᷂̓̀̉̓̀͘ Y̷̨̯̝̳̼͒̓ͪ᷃͊̂͌O̴͚̠᷂̳̤̙͚̟̅᷅̅̽͢Ṵ̵͛ͭͤͦ̍̂̐ͪ̚ S̵͉͉̺̙̗̮̟̱͆͂᷉︣̎ͮ᷃̀͆Ę̸̞᷂᷊͓̪̰̦̼᷃Ĕ̶̢̡̢͇̩̹͔̆̆͘͜ M̵͉̖̪͓͖̍͊ͮ͑ͯ̽᷾̾̏̕Ẹ̸̩̭̬̪̱͔̬̖̼᷇̅ͬ̂ͪ̅̉︢͡ È̸̠̞͓̩͚̲̬̙̞́͋︣ͮ᷅̾᷈́͋͟X̵᷂̹᷂̺̫̙̰̙͐A̶̝͉̝᷿᷅̍᷉͝M̸̻̬͑̄︣᷉̇I̵᷉͜N̶᷊̰̩̹̪̫̟̗ͩ̇ͨȆ̶̞̞̬̝͕̻͕̎͑︠̈̍͋͟ M̴͎̟̞̽͊̉̏́ͥ͡Ȅ̵̳̺̼͔͔͚̜̰̿͐ͯͫͪ";
     showOptionsP1(op1);
     p++;
   } else if (p == 136) {
