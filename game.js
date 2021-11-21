@@ -164,6 +164,8 @@ $("#option1").click((e) => {
     gameScene(p);
   } else if (p == 178) {
     // the wait is over
+    p = changeScene(p);
+    gameScene(p);
   } else if (p == 68) {
     //P11.a chose to check camera after waking up again
     p = changeScene(p);
@@ -240,6 +242,8 @@ $("#option2").click((e) => {
   } else if (p == 105) {
     // attack her
     p = 147;
+    p = changeScene(p);
+    gameScene(p);
   } else if (p == 68) {
     //P11.b chose to investigate after waking up again
     p = 300;
@@ -624,6 +628,10 @@ const resetGame = (items, player_name, k) => {
   items.clear();
   player_name = "";
   k = 0;
+  opt1Discovered = 0;
+  opt2Discovered = 0;
+  opt3Discovered = 0;
+  opt4Discovered = 0;
 };
 
 const gameScene = (p) => {
