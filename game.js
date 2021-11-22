@@ -81,6 +81,16 @@ $("#next_button").click((e) => {
   }
 });
 
+$("#next_button").hover(
+  () => {
+    console.log("hovering");
+    $("#next_button").attr("src", "assets/animations/UI_02Hover10x.gif");
+  },
+  () => {
+    $("#next_button").attr("src", "assets/UI/NextButton.png");
+  }
+);
+
 // Get user name
 $("#name_form").submit((e) => {
   e.preventDefault();
