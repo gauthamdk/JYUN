@@ -30,7 +30,7 @@ body {
 }
 
 .options_text {
-  font-size: 2vh;
+  font-size: 2.2vh;
   cursor: pointer;
 }
 
@@ -79,6 +79,20 @@ body {
   top: 8%;
   left: 10%;
   cursor: pointer;
+}
+
+#dot1, #dot2, #dot3, #dot4, #dot5 {
+  height: 2vh;
+  width: 2vh;
+  border: 0.26vh solid white;
+  border-radius: 50%;
+  display: block;
+  position: relative;
+  left: 99%;
+  bottom: 0.7%;
+  margin-top: -2vh;
+  cursor: pointer;
+
 }
 
 @media screen and (max-width: 600px) {

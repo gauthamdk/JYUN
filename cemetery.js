@@ -1,5 +1,5 @@
 import { showOptionsP2, hideOptionsP2 } from "./optionsP2.js";
-
+import { movedToSlide } from "./game.js";
 //for typing effect ============
 var i2 = 0;
 var pos2 = 0;
@@ -11,28 +11,34 @@ var delay2 = 0;
 function typeWriter(){
   var subs1 ="";
   var subs2= "";
-  if (i2 < nextText2.length) {
-    if(nextText2.charAt(i2) == "<")
-    {
-      if(nextText2.charAt(i2+1)== "u"){
-        i2+=3;
-        pos2 = i;
-      }
-      else if(nextText2.charAt(i2+1)== "/"){
-        subs1 = nextText2.substring(pos2,i2);
-        // console.log("subs1= ",subs1);
-        i2+=4;
-        subs2 = "<u>" + subs1 + "</u>";
-        // console.log("subs2= ",subs2);
-        document.getElementById("gameplay_text").innerHTML = 
-        document.getElementById("gameplay_text").innerHTML.replace(subs1,subs2);
-      }
-    }
-    document.getElementById("gameplay_text").innerHTML += nextText2.charAt(i2);
-    i2++;
-    setTimeout(typeWriter, speed);
+  if (movedToSlide == 1){
+    console.log("broke out of typing.");
+    return;
   }
-  return speed * nextText2.length;
+  else{
+    if (i2 < nextText2.length) {
+      if(nextText2.charAt(i2) == "<")
+      {
+        if(nextText2.charAt(i2+1)== "u"){
+          i2+=3;
+          pos2 = i;
+        }
+        else if(nextText2.charAt(i2+1)== "/"){
+          subs1 = nextText2.substring(pos2,i2);
+          // console.log("subs1= ",subs1);
+          i2+=4;
+          subs2 = "<u>" + subs1 + "</u>";
+          // console.log("subs2= ",subs2);
+          document.getElementById("gameplay_text").innerHTML = 
+          document.getElementById("gameplay_text").innerHTML.replace(subs1,subs2);
+        }
+      }
+      document.getElementById("gameplay_text").innerHTML += nextText2.charAt(i2);
+      i2++;
+      setTimeout(typeWriter, speed);
+    }
+    return speed * nextText2.length;
+  }
 }
 //=============================
 //=============================

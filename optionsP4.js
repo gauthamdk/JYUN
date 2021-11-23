@@ -1,13 +1,20 @@
 const showOptionsP4 = (option1, option2, option3, option4, option5, bool1, bool2, bool3, bool4) => {
-  $("#option1").text(option1);
-  $("#option2").text(option2);
-  $("#option3").text(option3);
-  $("#option4").text(option4);
-  $("#option1a").text(option1);
-  $("#option2a").text(option2);
-  $("#option3a").text(option3);
-  $("#option4a").text(option4);
-  $("#option5").text(option5);
+  $("#option1").text(option1+"\xa0\xa0\xa0");
+  $("#option2").text(option2+"\xa0\xa0\xa0");
+  $("#option3").text(option3+"\xa0\xa0\xa0");
+  $("#option4").text(option4+"\xa0\xa0\xa0");
+  $("#option1a").text(option1+"\xa0\xa0\xa0");
+  $("#option2a").text(option2+"\xa0\xa0\xa0");
+  $("#option3a").text(option3+"\xa0\xa0\xa0");
+  $("#option4a").text(option4+"\xa0\xa0\xa0");
+  $("#option5").text(option5+"\xa0\xa0\xa0");
+
+  $("#dot1").removeClass("d-none");
+  $("#dot2").removeClass("d-none");
+  $("#dot3").removeClass("d-none");
+  $("#dot4").removeClass("d-none");
+  $("#dot5").removeClass("d-none");
+
 
   if (bool1 == 1){
     $("#option1a").removeClass("d-none");
@@ -52,6 +59,11 @@ const hideOptionsP4 = (option1, option2, option3, option4, option5) => {
   $("#option4a").addClass("d-none");
   $("#option5").addClass("d-none");
   $("#next_button").removeClass("d-none");
+  $("#dot1").addClass("d-none");
+  $("#dot2").addClass("d-none");
+  $("#dot3").addClass("d-none");
+  $("#dot4").addClass("d-none");
+  $("#dot5").addClass("d-none");
 };
 
 export { showOptionsP4, hideOptionsP4 };
