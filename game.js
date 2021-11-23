@@ -31,22 +31,25 @@ import {
 let player_name = "";
 let items = new Set(["sawPhoto"]);
 let skipOne = new Set([
-  2, 3, 4, 5, 6, 7, 9, 9, 11, 14, 15, 16, 17, 18, 21, 22, 26, 29, 33, 35, 36,
+  2, 3, 4, 5, 6, 7, 14, 15, 16, 17, 18, 21, 22, 26, 29, 33, 35, 36,
   37, 39, 40, 41, 42, 44, 47, 48, 51, 53, 54, 55, 59, 61, 62, 63, 64, 65, 69,
-  70, 71, 72, 73, 74, 75, 76, 77, 78, 80, 81, 82, 83, 84, 85, 94, 95, 96, 97,
+  70, 71, 72, 73, 74, 75, 76, 77, 81, 82, 83, 84, 85, 94, 95, 96, 97,
   98, 99, 100, 101, 103, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116,
   117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 132, 142,
   148, 149, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164,
   165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 179, 181, 182,
   183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197,
   198, 199, 200, 201, 202, 203, 203, 204, 205, 206, 207, 208, 209, 210, 211,
-  212, 301, 303, 304, 305, 306, 307, 308, 309, 314,
+  212, 304, 305, 306, 307, 308, 309
 ]);
 
 let p = 0; // keep track of scenes
 // let p = 90;
 let k = 0; // keep track of number of items interacted with
 console.log("k = ", k);
+
+let movedToCemetery = 0; //boolean to check if we move from showSlide to showCemetery
+let movedToSlide = 0; //boolean to check if we move from showCemetery to showSlide
 
 let opt1Discovered = 0;
 let opt2Discovered = 0;
@@ -55,8 +58,10 @@ let opt4Discovered = 0;
 
 //when clicking on image in part P11-c, go back to P0
 $("#cem2").click((e) => {
+  movedToCemetery = 0;
+  movedToSlide = 1;
   hideCemetery2();
-  //=========GAUTHAM: here is where reset all the values
+  //=========GAUTHAM: here is where i reset all the values
   k = 0; // reset number of items interacted with
   items.clear(); // empty items set
   opt1Discovered = 0; //reset all boolean checks for selected options to false
@@ -92,7 +97,7 @@ $("#name_form").submit((e) => {
 });
 
 // OPTION LISTENERS
-$("#option1").click((e) => {
+$("#option1, #dot1").click((e) => {
   if (p == 9) {
     p = changeScene(p);
     gameScene(p);
@@ -181,7 +186,7 @@ $("#option1").click((e) => {
   }
 });
 
-$("#option2").click((e) => {
+$("#option2, #dot2").click((e) => {
   if (p == 9) {
     showSlide(
       "assets/player/CharPD_01.png",
@@ -252,7 +257,7 @@ $("#option2").click((e) => {
   }
 });
 
-$("#option3").click((e) => {
+$("#option3, #dot3").click((e) => {
   if (p == 13) {
     k++; //interacted with footprints
     opt3Discovered = 1;
@@ -275,7 +280,7 @@ $("#option3").click((e) => {
   }
 });
 
-$("#option4").click((e) => {
+$("#option4, #dot4").click((e) => {
   if (p == 13) {
     k++; //interacted with piece of cloth
     opt4Discovered = 1;
@@ -290,7 +295,7 @@ $("#option4").click((e) => {
   }
 });
 
-$("#option5").click((e) => {
+$("#option5, #dot5").click((e) => {
   if (p == 13) {
     p = changeScene(32);
     gameScene(p);
@@ -305,6 +310,7 @@ $("#option5").click((e) => {
 let pullOut = "";
 const changeScene = (p) => {
   if (p == 0) {
+  	movedToSlide = 0;
     player_name = $("#username_textbox")[0].value;
     if (player_name == "") {
       alert("enter name");
@@ -320,10 +326,18 @@ const changeScene = (p) => {
     p++;
   } else if (p == 8) {
     let op1 = "Investigate the sounds.";
-    let op2 = "Go back to sleep";
+    let op2 = "Go back to sleep.";
     showOptionsP2(op1, op2);
     p++;
-  } else if (p == 10) {
+  }else if (p == 9 || p==78 || p==301 || p==314){
+  	movedToCemetery = 1;
+  	p++;
+  } else if (p == 11 || p==80|| p==303){
+  	movedToSlide = 0;
+  	p++;
+  }else if (p == 10) {
+  	movedToCemetery = 0;
+  	movedToSlide = 1;
     hideCemetery();
     p++;
   } else if (p == 12) {
@@ -583,6 +597,8 @@ const changeScene = (p) => {
     hideOptionsP3();
     p++;
   } else if (p == 79) {
+  	movedToCemetery = 0;
+  	movedToSlide = 1;
     hideCemetery();
     p++;
   } else if (p == 86) {
@@ -594,6 +610,8 @@ const changeScene = (p) => {
     hideOptionsP3();
     p++;
   } else if (p == 302) {
+  	movedToCemetery = 0;
+  	movedToSlide = 1;
     hideCemetery();
     p++;
   } else if (p == 310) {
@@ -616,6 +634,8 @@ const changeScene = (p) => {
     hideOptionsP3();
     p++;
   } else if (p == 316) {
+  	movedToCemetery = 0;
+  	movedToSlide = 1;
     hideCemetery2();
   }
   console.log(`returning ${p}`);
@@ -1194,3 +1214,5 @@ const gameScene = (p) => {
 };
 
 gameScene(p);
+
+export { movedToCemetery, movedToSlide};
